@@ -1,21 +1,32 @@
-import { createBrowserRouter, RouterProvider, Routes, Route } from 'react-router-dom';
-import './App.css';
-import ProtectedRoutes from './ProtectedRoutes';
+import { Route, Routes } from 'react-router-dom';
 import LayoutAdmin from './layouts/admin';
+import LayoutHome from './layouts/home';
 import LayoutUser from './layouts/user';
-import { IRouter } from './interface/router';
-import Login from './pages/login';
+import AboutPage from './pages/about';
+import CartPage from './pages/cart';
+import ContactsPage from './pages/contacts';
+import LoginPage from './pages/login';
+import MenuPage from './pages/menu';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const App = () => {
-  const routerLayout = [
-    { path: '/', element: <LayoutUser /> },
-    { path: '/admin', element: <LayoutAdmin />, protected: true },
+  const routerAdmin = [{ path: 'login', element: <LoginPage /> }];
+  const routerUser = [
+    { path: 'menu', element: <MenuPage /> },
+    { path: 'about', element: <AboutPage /> },
+    { path: 'contacts', element: <ContactsPage /> },
+    { path: 'cart', element: <CartPage /> },
   ];
-  const routerAdmin = [{ path: 'login', element: <Login /> }];
 
   return (
     <Routes>
-      <Route path='/' element={<LayoutUser />} />
+      <Route path='/' element={<LayoutHome />} />
+
+      <Route path='/user' element={<LayoutUser />}>
+        {routerUser.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Route>
 
       <Route element={<ProtectedRoutes />}>
         <Route path='/admin' element={<LayoutAdmin />}>

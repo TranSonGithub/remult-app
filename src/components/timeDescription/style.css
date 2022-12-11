@@ -1,0 +1,12 @@
+.timeDescription__container {
+  @apply mt-56 flex items-center;
+}
+
+.timeDescription__logoClock {
+  width: 50px;
+}
+
+.timeDescription__content {
+  @apply ml-7 font-medium;
+  color: var(--textPrimary);
+}

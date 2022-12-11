@@ -1,0 +1,20 @@
+.buttonBookNow__container {
+  @apply p-2 text-center cursor-pointer;
+  background-color: var(--textPrimary);
+  width: 150px;
+  height: 50px;
+  border-radius: 150px;
+}
+
+.buttonBookNow__text {
+  @apply font-bold;
+  color: var(--textWhite);
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.buttonLeave {
+  max-width: 300px;
+  top: -320%;
+  left: 20%;
+}

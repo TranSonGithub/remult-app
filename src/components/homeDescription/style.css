@@ -1,0 +1,17 @@
+.homeDescription__container {
+  width: 400px;
+}
+
+.homeDescription__content {
+  @apply top-0;
+}
+
+.homeDescription__content h2 {
+  @apply text-2xl font-bold mb-2;
+  color: var(--textPrimary);
+}
+
+.homeDescription__content h3 {
+  @apply text-xl font-medium mb-10;
+  color: var(--textBlack);
+}

@@ -1,7 +1,17 @@
-import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import Navigation from '../../components/navigation/Navigation';
 
 const LayoutUser = () => {
-  return <div>Layout user</div>;
+  const { pathname } = useLocation();
+
+  return (
+    <>
+      <Navigation pathname={pathname} />
+      <div className='main__user--content'>
+        <Outlet />
+      </div>
+    </>
+  );
 };
 
 export default LayoutUser;

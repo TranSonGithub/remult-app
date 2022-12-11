@@ -1,0 +1,48 @@
+.container__nav {
+  @apply px-12;
+  background: var(--primary);
+}
+
+.container__nav--home {
+  @apply px-12;
+}
+
+.text__primary {
+  @apply mr-8 cursor-pointer relative;
+  border-color: var(--textPrimary);
+  text-decoration: none;
+}
+.active:before {
+  @apply absolute;
+  content: '';
+  background-color: var(--textPrimary);
+  width: 100%;
+  height: 2px;
+
+  bottom: -2px;
+}
+
+.cart__image {
+  @apply cursor-pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.cart__number {
+  @apply rounded-full text-center;
+  width: 18px;
+  height: 18px;
+  background: red;
+  color: white;
+  padding: 3.5px 0;
+
+  top: -30%;
+  right: -30%;
+}
+
+.cart__number p {
+  /* width: 100%;
+  height: 100%; */
+  line-height: 100%;
+  font-size: 12px;
+}

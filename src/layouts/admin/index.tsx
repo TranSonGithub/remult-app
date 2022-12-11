@@ -5,7 +5,10 @@ import Login from '../../pages/login';
 const LayoutAdmin = () => {
   return (
     <div>
-      <Outlet />
+      <div>Layout Admin</div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };
