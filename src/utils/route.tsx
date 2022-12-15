@@ -5,3 +5,8 @@ export const routerUser = {
   cart: '/user/cart',
   home: '/',
 };
+
+export const routerMenu = {
+  main: '/user/menu/main',
+  drink: '/user/menu/drink',
+};

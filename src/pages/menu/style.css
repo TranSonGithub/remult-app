@@ -1,0 +1,43 @@
+.menuPage__container {
+  @apply px-20 pt-24 pb-20;
+}
+
+.menuPage__title {
+  @apply relative;
+}
+
+.menuPage__title--text {
+  @apply mb-5 font-bold text-2xl text-center;
+  color: var(--textPrimary);
+}
+
+.menuPage__title--underline {
+  @apply m-auto;
+
+  width: 500px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--primary);
+}
+
+.menuPage__subTitle {
+  @apply m-auto mt-5 grid grid-cols-3 justify-items-center;
+  width: 500px;
+}
+
+.menuPage__subTitle--item {
+  @apply relative cursor-pointer;
+}
+.menuPage__subTitle--text {
+  @apply mt-5 font-bold text-2xl;
+  color: var(--textPrimary);
+}
+.menuPage__subTitle--underline {
+  @apply absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80px;
+  height: 2px;
+  background-color: var(--primary);
+}

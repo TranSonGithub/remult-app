@@ -1,10 +1,10 @@
 .homeHeader__container {
-  @apply px-12 mt-28;
+  @apply px-24 mt-28;
   height: 100%;
 }
 
 .homeHeader__button {
   top: 30%;
-  left: 45%;
+  left: 48%;
   transform: translate(-50%, -30%);
 }

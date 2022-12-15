@@ -7,12 +7,21 @@ import CartPage from './pages/cart';
 import ContactsPage from './pages/contacts';
 import LoginPage from './pages/login';
 import MenuPage from './pages/menu';
+import MenuDrink from './pages/menu/drink';
+import MenuMain from './pages/menu/main';
 import ProtectedRoutes from './ProtectedRoutes';
 
 const App = () => {
   const routerAdmin = [{ path: 'login', element: <LoginPage /> }];
   const routerUser = [
-    { path: 'menu', element: <MenuPage /> },
+    {
+      path: 'menu',
+      element: <MenuPage />,
+      child: [
+        { path: '/user/menu/main', element: <MenuMain /> },
+        { path: '/user/menu/drink', element: <MenuDrink /> },
+      ],
+    },
     { path: 'about', element: <AboutPage /> },
     { path: 'contacts', element: <ContactsPage /> },
     { path: 'cart', element: <CartPage /> },
@@ -23,9 +32,17 @@ const App = () => {
       <Route path='/' element={<LayoutHome />} />
 
       <Route path='/user' element={<LayoutUser />}>
-        {routerUser.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element} />
-        ))}
+        {routerUser.map((route, index) =>
+          route.child ? (
+            <Route key={index} path={route.path} element={route.element}>
+              {route.child.map((childRoute, index) => (
+                <Route key={index} path={childRoute.path} element={childRoute.element} />
+              ))}
+            </Route>
+          ) : (
+            <Route key={index} path={route.path} element={route.element} />
+          )
+        )}
       </Route>
 
       <Route element={<ProtectedRoutes />}>

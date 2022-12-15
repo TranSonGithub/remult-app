@@ -1,0 +1,37 @@
+.menu__container {
+  /* @apply mx-5; */
+  /* height: 500px; */
+  width: 100%;
+}
+
+.menu__title {
+  @apply text-center relative;
+}
+
+.menu__title--text {
+  @apply font-bold text-2xl text-center;
+  color: var(--textPrimary);
+}
+
+.menu__title--underline {
+  @apply absolute;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  width: 80px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--textPrimary);
+}
+
+.menu__item {
+  @apply my-32 flex content-between;
+}
+
+.menu__button {
+  @apply px-1 py-2 text-center m-auto;
+  display: block;
+  width: 100px;
+  border: 1px solid var(--textBlack);
+}

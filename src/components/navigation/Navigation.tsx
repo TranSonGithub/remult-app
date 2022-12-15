@@ -6,8 +6,13 @@ import './style.css';
 
 const Navigation = (props: any) => {
   const { pathname } = props;
+
   const conditionActive = (path: string) => {
-    return pathname === path ? 'active' : '';
+    const paths = pathname.split('/');
+    console.log(paths.slice(0, 3).join('/'));
+    console.log('condition', path === `${paths.slice(1, 3).join('/')}` ? 'active' : '');
+
+    return path === `/${paths.slice(1, 3).join('/')}` ? 'active' : '';
   };
 
   return (

@@ -1,10 +1,10 @@
 .container__nav {
-  @apply px-12;
+  @apply px-24;
   background: var(--primary);
 }
 
 .container__nav--home {
-  @apply px-12;
+  @apply px-24;
 }
 
 .text__primary {

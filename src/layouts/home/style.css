@@ -1,5 +1,13 @@
 .main__home--header {
   background: url('../../assets/image/backgroundHome.png') no-repeat;
   background-size: 100%;
-  height: 800px;
+  height: 770px;
+}
+
+.main__home--menu {
+  background-color: var(--primary);
+}
+
+.main__home--container {
+  @apply px-20 pt-24 pb-20;
 }
