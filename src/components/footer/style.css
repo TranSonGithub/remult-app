@@ -1,0 +1,47 @@
+.footer__container {
+  @apply text-center pt-10;
+  background: var(--primary);
+}
+
+.footer__title {
+  @apply my-8;
+  font-family: Quattrocento;
+  font-size: 50px;
+  color: var(--textWhite);
+}
+
+.footer__underline {
+  @apply m-auto;
+  width: 350px;
+  height: 3px;
+  background-color: var(--textPrimary);
+}
+
+.footer__social {
+  @apply my-10 m-auto grid grid-cols-3;
+  width: 200px;
+}
+
+.footer__social div {
+  width: 45px;
+}
+
+.footer__social div img {
+  width: 100%;
+}
+
+.footer__end {
+  @apply m-auto flex justify-center py-5;
+  width: 100%;
+  background: rgba(85, 3, 18, 0.15);
+}
+
+.footer__end img {
+  width: 20px;
+  margin: auto 5px;
+}
+
+.footer__end--text {
+  z-index: 1;
+  color: #000000;
+}
