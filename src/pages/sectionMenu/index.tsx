@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import MenuItem from '../../components/menuItem/MenuItem';
-import mockMenu from '../../mock/menu';
+import { mockMenuMain } from '../../mock/menu';
 import { routerUser } from '../../utils/route';
 import './style.css';
 
@@ -12,7 +12,7 @@ const SectionMenu = () => {
         <div className='menu__title--underline'></div>
       </div>
       <div className='menu__item'>
-        {mockMenu.map((menuItem, idx) => (
+        {mockMenuMain.map((menuItem, idx) => (
           <MenuItem key={idx} {...menuItem} />
         ))}
       </div>

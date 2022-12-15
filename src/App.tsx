@@ -9,6 +9,7 @@ import LoginPage from './pages/login';
 import MenuPage from './pages/menu';
 import MenuDrink from './pages/menu/drink';
 import MenuMain from './pages/menu/main';
+import MenuAll from './pages/menu/menuAll';
 import ProtectedRoutes from './ProtectedRoutes';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       path: 'menu',
       element: <MenuPage />,
       child: [
+        { path: '/user/menu', element: <MenuAll /> },
         { path: '/user/menu/main', element: <MenuMain /> },
         { path: '/user/menu/drink', element: <MenuDrink /> },
       ],

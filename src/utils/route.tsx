@@ -7,6 +7,7 @@ export const routerUser = {
 };
 
 export const routerMenu = {
+  all: '/user/menu',
   main: '/user/menu/main',
   drink: '/user/menu/drink',
 };

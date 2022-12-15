@@ -8,5 +8,6 @@ export interface IMenuItem {
   avatar?: string | null;
   name: string;
   description: string;
+  type: string;
   size: ISize[];
 }

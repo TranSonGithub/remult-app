@@ -9,9 +9,6 @@ const Navigation = (props: any) => {
 
   const conditionActive = (path: string) => {
     const paths = pathname.split('/');
-    console.log(paths.slice(0, 3).join('/'));
-    console.log('condition', path === `${paths.slice(1, 3).join('/')}` ? 'active' : '');
-
     return path === `/${paths.slice(1, 3).join('/')}` ? 'active' : '';
   };
 
