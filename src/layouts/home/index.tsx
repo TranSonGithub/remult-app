@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Navigation from '../../components/navigation/Navigation';
+import { selectShowBooking } from '../../features/modal/modalSlice';
 import HomeHeaderPage from '../../pages/sectionHeader';
 import SectionMenu from '../../pages/sectionMenu';
-import { useLocation } from 'react-router-dom';
 import './style.css';
 
 const LayoutHome = () => {
   const { pathname } = useLocation();
+  const modalBooking = useSelector(selectShowBooking);
 
   return (
     <>

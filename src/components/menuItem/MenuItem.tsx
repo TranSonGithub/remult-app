@@ -1,10 +1,18 @@
 import './style.css';
 import imagePizza from '../../assets/image/pizza.png';
 import { IMenuItem } from '../../interface/menu';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../features/modal/modalSlice';
 
 const MenuItem = (menuItem: IMenuItem) => {
+  const dispatch = useDispatch();
+
   const priceMin = menuItem.size.reduce((result, item) => (item.price < result.price ? item : result));
   const priceMax = menuItem.size.reduce((result, item) => (item.price > result.price ? item : result));
+
+  const handleBooking = (e: any) => {
+    dispatch(modalActions.showModalBooking({ modalBooking: { show: true } }));
+  };
 
   return (
     <div className='menuItem__container'>
@@ -19,7 +27,7 @@ const MenuItem = (menuItem: IMenuItem) => {
           {priceMin.price} - {priceMax.price}
         </p>
       </div>
-      <div className='menuItem__buttonBook'>
+      <div className='menuItem__buttonBook' onClick={handleBooking}>
         <p>Đặt mua</p>
       </div>
     </div>

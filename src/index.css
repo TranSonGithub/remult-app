@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  position: relative;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -21,6 +22,8 @@
   /* Color genaral golabol */
   --primary: #ffbe41;
   --second: #fffdf1;
+  --bgSecond: #f2c94c;
+  --bgGrey: #d9d9d9;
 
   /* Color text golabol */
   --textPrimary: #550312;
@@ -28,6 +31,12 @@
   --textWhite: #fffdf1;
 }
 
-.footer {
-  @apply mt-7;
+.text__title--primary {
+  @apply font-bold text-3xl;
+  color: var(--textBlack);
+}
+
+.text__title--second {
+  @apply font-bold text-xl;
+  color: var(--textBlack);
 }

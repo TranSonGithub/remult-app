@@ -1,9 +1,6 @@
-import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import MenuItem from '../../../components/menuItem/MenuItem';
-import { mockMenuMain } from '../../../mock/menu';
 import { IMenuItem } from '../../../interface/menu';
-import { routerUser } from '../../../utils/route';
 import './style.css';
 
 const MenuAll = () => {

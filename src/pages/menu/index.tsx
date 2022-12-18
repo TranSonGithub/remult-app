@@ -1,7 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { mockMenuDrink, mockMenuMain } from '../../mock/menu';
 import { routerMenu, routerUser } from '../../utils/route';
-import Footer from '../../components/footer/Footer';
 import './style.css';
 
 const MenuPage = () => {
