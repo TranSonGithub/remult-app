@@ -1,0 +1,24 @@
+.chargeItem__container {
+  @apply flex;
+}
+
+.chargeItem__avatar {
+  width: 100px;
+  height: 100px;
+}
+.chargeItem__avatar img {
+  @apply w-full h-full;
+}
+
+.chargeItem__content {
+  @apply ml-10;
+}
+.chargeItem__title {
+  @apply font-semibold my-4;
+  font-size: 25px;
+}
+.chargeItem__text p,
+.chargeItem__text i {
+  @apply inline;
+  font-size: 20px;
+}

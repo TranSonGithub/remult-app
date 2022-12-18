@@ -1,0 +1,67 @@
+/* .orderItem__container {
+  border: solid 1px black;
+  border-radius: 10px;
+} */
+
+.orderItem__header {
+  @apply relative flex py-6 px-12;
+  font-size: 25px;
+  border: solid 1px black;
+  border-radius: 10px 10px 0 0;
+  background: var(--bgYellow);
+}
+
+.header__orderId {
+  @apply basis-1/2;
+}
+.header__total {
+  @apply basis-1/2;
+}
+.header__arrow {
+  @apply absolute cursor-pointer;
+  top: 13px;
+  right: 40px;
+  width: 50px;
+  heght: 50px;
+}
+.header__arrow img {
+  @apply w-full h-full;
+}
+
+.orderItem__content {
+  @aaply relative;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  border-color: black;
+  border-radius: 0 0 10px 10px;
+}
+
+.orderItem__info {
+  @apply grid grid-cols-2 py-6 px-12;
+  font-size: 25px;
+  border-bottom: 1px solid black;
+}
+.orderItem__info--text {
+  @apply my-2;
+}
+
+.orderItem__listOrder {
+  @apply py-6 px-12;
+}
+.orderItem__button {
+  @apply px-12 pb-5;
+}
+
+.orderItem__button {
+  @apply my-5 text-center;
+  width: 100%;
+  height: 100%;
+}
+.orderItem__button button {
+  @apply m-auto text-center;
+  color: red;
+  width: 350px;
+  height: 65px;
+  border: 1px solid red;
+  border-radius: 10px;
+}

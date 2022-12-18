@@ -1,0 +1,19 @@
+.loginPage {
+  @apply flex;
+}
+.loginPage__bg {
+  width: 50%;
+  height: 100vh;
+  background: url('../../assets/image/bgLogin.png') no-repeat;
+  background-size: cover;
+}
+
+.loginPage__content {
+  @apply py-48 px-24;
+}
+.loginPage__title {
+  @apply mb-24;
+}
+
+.loginPage__login {
+}

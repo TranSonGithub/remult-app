@@ -1,0 +1,26 @@
+.cartPage__title {
+  @apply mb-10;
+}
+
+.cartPage__listItem {
+  @apply grid grid-cols-2 gap-x-2;
+}
+
+.menuPage__charge {
+  @apply mt-10;
+}
+.menuPage__charge b,
+.menuPage__charge p {
+  @apply font-bold;
+  display: inline;
+}
+.menuPage__charge p {
+  @apply ml-5;
+}
+
+/* Button */
+.charge__button {
+  @apply mt-5 w-56 h-12 font-bold block text-center py-2.5;
+  background: var(--primary);
+  border-radius: 8px;
+}

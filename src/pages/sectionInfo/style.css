@@ -1,0 +1,41 @@
+.sectionInfo__underline {
+  background: var(--primary);
+}
+
+.sectionInfo__listItem {
+  @apply mt-28 flex justify-around;
+}
+.sectionInfo__item {
+  @apply mx-2 text-center py-16 px-5;
+  border: solid 1px var(--textBlack);
+  width: 400px;
+  height: 470px;
+  border-radius: 10px;
+}
+
+.item__icon {
+  @apply flex justify-center m-auto;
+  width: 100px;
+  height: 100px;
+}
+.sectionInfo__item--second .item__icon {
+  width: 90px;
+}
+.sectionInfo__item--third .item__icon {
+  width: 90px;
+}
+
+.sectionInfo__item img {
+  width: 100%;
+  height: 100%;
+}
+
+.item__title {
+  @apply font-medium mb-5 mt-10;
+  font-size: 20px;
+  color: var(--textPrimary);
+}
+
+.sectionInfo__info {
+  @apply mt-20 px-10;
+}

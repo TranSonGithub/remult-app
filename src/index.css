@@ -24,11 +24,23 @@
   --second: #fffdf1;
   --bgSecond: #f2c94c;
   --bgGrey: #d9d9d9;
+  --bgYellow: #ffaf14;
 
   /* Color text golabol */
   --textPrimary: #550312;
   --textBlack: #333333;
   --textWhite: #fffdf1;
+  --textGray: #a5b1c2;
+
+  /* Color status */
+  --blue: #2b60c8;
+  --red: #eb5757;
+  --green: #219653;
+}
+
+.text__title {
+  @apply font-bold text-3xl;
+  color: var(--textPrimary);
 }
 
 .text__title--primary {

@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import iconCloseWhite from '../../../assets/icon/closeWhite.svg';
-import iconDecrease from '../../../assets/icon/decrease.svg';
-import iconIncrease from '../../../assets/icon/increase.svg';
 import Pizza from '../../../assets/image/pizza.png';
+import Number from '../number/Number';
 import { modalActions, selectShowBooking } from '../../../features/modal/modalSlice';
 
 import './style.css';
@@ -64,15 +63,7 @@ const ModalBooking = () => {
             </div>
           </div>
           <div className='modalBooking__footer'>
-            <div className='footer__number'>
-              <button className='footer__box footer__decrease'>
-                <img src={iconDecrease} alt='' />
-              </button>
-              <div className='footer__box footer__box--text'>2</div>
-              <button className='footer__box footer__decrease'>
-                <img src={iconIncrease} alt='' />
-              </button>
-            </div>
+            <Number />
             <div className='footer__total'>
               <p>{`Thêm vào giỏ hàng ${total} VND`}</p>
             </div>

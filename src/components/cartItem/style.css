@@ -1,0 +1,31 @@
+.cartItem__container {
+  @apply flex justify-around pb-5;
+  border-bottom: solid 1px var(--textBlack);
+}
+
+.cartItem__avatar {
+  @apply w-40 h-40;
+}
+.cartItem__avatar img {
+  @apply w-full h-full;
+}
+
+.cartItem__content {
+  @apply ml-12 mr-20;
+}
+
+.cartItem__title {
+  @apply mb-4;
+}
+
+.cartItem__action {
+  @apply mt-4 flex;
+}
+.action__edit {
+  @apply mr-2 cursor-pointer;
+  color: var(--blue);
+}
+.action__delete {
+  @apply ml-2 cursor-pointer;
+  color: var(--red);
+}

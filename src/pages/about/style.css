@@ -1,0 +1,23 @@
+.aboutPage__title {
+  @apply mb-10;
+}
+
+.aboutPage__text {
+  @apply mt-5;
+}
+
+.aboutPage__text p {
+  display: inline;
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.aboutPage__text b {
+  @apply font-bold;
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.menuPage__map {
+  @apply mt-10;
+}

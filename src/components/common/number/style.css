@@ -1,0 +1,18 @@
+.number__container {
+  @apply flex;
+}
+
+.number__box {
+  @apply flex justify-center items-center;
+  width: 50px;
+  height: 50px;
+  background: var(--bgGrey);
+}
+
+.number__box--text {
+  @apply text-center text-lg mx-1;
+}
+
+.number__decrease img {
+  width: 18px;
+}

@@ -1,0 +1,18 @@
+.infoMap__container {
+  @apply flex justify-around;
+}
+
+.infoMap__map {
+  width: 501px;
+  height: 351px;
+  border: solid 1px black;
+}
+
+.infoMap__content {
+  @apply ml-10;
+}
+
+.text__map {
+  @apply mb-8 font-medium;
+  fonte-size: 40px;
+}

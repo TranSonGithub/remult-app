@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Login from './pages/login';
 
 function ProtectedRoutes() {
-  const token = 'asdfs';
+  const token = null;
 
   return token ? <Outlet /> : <Login />;
 }

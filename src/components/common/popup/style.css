@@ -1,0 +1,43 @@
+.popup__container {
+  @apply fixed h-screen;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(217, 217, 217, 50%);
+}
+
+.popup__box {
+  @apply absolute py-14 px-8;
+  width: 500px;
+  height: 250px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  /* background: var(--bgSecond); */
+  background: white;
+
+  border-radius: 10px;
+}
+
+.popup__text {
+  @apply text-center mb-16;
+  font-size: 30px;
+}
+
+.popup__button {
+  @apply flex justify-center;
+}
+.popup__button--item {
+  @apply text-center py-3 cursor-pointer;
+  width: 130px;
+  height: 50px;
+  border-radius: 10px;
+}
+.popup__cancel {
+  @apply mr-1;
+  background: var(--bgGrey);
+}
+.popup__success {
+  @apply ml-1;
+  background: var(--bgSecond);
+}

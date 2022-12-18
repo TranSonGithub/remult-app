@@ -4,7 +4,7 @@ import LayoutHome from './layouts/home';
 import LayoutUser from './layouts/user';
 import AboutPage from './pages/about';
 import CartPage from './pages/cart';
-import ContactsPage from './pages/contacts';
+import TrackingPage from './pages/tracking';
 import LoginPage from './pages/login';
 import MenuPage from './pages/menu';
 import MenuDrink from './pages/menu/drink';
@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { selectShowBooking } from './features/modal/modalSlice';
 import { useState } from 'react';
 import ModalBooking from './components/common/modalBooking/ModalBooking';
+import ChargePage from './pages/charge';
 
 const App = () => {
   const routerAdmin = [{ path: 'login', element: <LoginPage /> }];
@@ -28,9 +29,10 @@ const App = () => {
         { path: '/user/menu/drink', element: <MenuDrink /> },
       ],
     },
+    { path: 'tracking', element: <TrackingPage /> },
     { path: 'about', element: <AboutPage /> },
-    { path: 'contacts', element: <ContactsPage /> },
     { path: 'cart', element: <CartPage /> },
+    { path: 'charge', element: <ChargePage /> },
   ];
 
   return (

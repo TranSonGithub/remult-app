@@ -22,11 +22,11 @@ const Navigation = (props: any) => {
           <Link className='text__primary' to={routerUser.menu}>
             <span className={conditionActive(routerUser.menu)}>Thực đơn</span>
           </Link>
+          <Link className='text__primary' to={routerUser.tracking}>
+            <span className={conditionActive(routerUser.tracking)}>Theo dõi đơn hàng</span>
+          </Link>
           <Link className='text__primary' to={routerUser.about}>
             <span className={conditionActive(routerUser.about)}>Thông tin</span>
-          </Link>
-          <Link className='text__primary' to={routerUser.contacts}>
-            <span className={conditionActive(routerUser.contacts)}>Liên hệ</span>
           </Link>
 
           <Link className='cart__image relative' to='/user/cart'>
