@@ -1,0 +1,53 @@
+.sidebar__container {
+  @apply relative p-4;
+  height: 100%;
+  background: var(--bgGreyAdmin);
+}
+
+.sidebar__logo {
+  @apply p-3 mb-24;
+  width: 100%;
+  height: 80px;
+  background: var(--primary);
+  border-radius: 10px;
+}
+.sidebar__logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar__item {
+  @apply flex my-10 py-2;
+}
+.sidebar__item--icon {
+  @apply mr-4;
+}
+.sidebar__item--title {
+  @apply font-medium;
+  font-size: 18px;
+  color: #a5b1c2;
+}
+
+.menu__logout {
+  @apply absolute flex justify-between shrink-0;
+  width: 85%;
+  bottom: 30px;
+}
+.logout__name {
+  @apply font-semibold;
+  font-size: 20px;
+}
+.logout__title {
+  color: #a5b1c2;
+}
+
+.logout__icon {
+  @apply cursor-pointer mt-1;
+}
+
+.sidebar__item:hover {
+  filter: brightness(0%);
+}
+.menu__active {
+  filter: brightness(0%);
+}

@@ -4,13 +4,13 @@ import { selectShowPopup } from '../../features/popup/popupSlice';
 import Footer from '../../components/footer/Footer';
 import Navigation from '../../components/navigation/Navigation';
 import { useSelector } from 'react-redux';
-import { selectShowBooking } from '../../features/modal/modalSlice';
+import { selectModalBooking } from '../../features/modal/modalSlice';
 import Popup from '../../components/common/popup/Popup';
 
 const LayoutUser = () => {
   const { pathname } = useLocation();
 
-  const modalBooking = useSelector(selectShowBooking);
+  const modalBooking = useSelector(selectModalBooking);
   const showPopup = useSelector(selectShowPopup);
 
   return (

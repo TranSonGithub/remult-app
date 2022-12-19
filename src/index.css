@@ -24,6 +24,7 @@
   --second: #fffdf1;
   --bgSecond: #f2c94c;
   --bgGrey: #d9d9d9;
+  --bgGreyAdmin: #f5f6fa;
   --bgYellow: #ffaf14;
 
   /* Color text golabol */
@@ -51,4 +52,15 @@
 .text__title--second {
   @apply font-bold text-xl;
   color: var(--textBlack);
+}
+.text__subTitle {
+  @apply font-medium text-xl;
+  color: var(--textBlack);
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+}
+.avatart img {
+  @appy w-full h-full;
 }

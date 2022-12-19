@@ -1,0 +1,32 @@
+.adminMenu__header {
+  @apply mb-10 mt-2 flex justify-between;
+}
+.adminMenu__addBtn {
+  @apply cursor-pointer;
+}
+/* .adminMenu__title {
+  @apply mb-10;
+} */
+
+.adminMenu__main,
+.adminMenu__drink {
+  @apply relative cursor-pointer;
+}
+.adminMenu__content {
+  @apply flex;
+}
+.adminMenu__underLine {
+  @apply absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+  height: 2px;
+  background: var(--primary);
+}
+.adminMenu__drink {
+  @apply ml-3;
+}
+
+.adminMenu__listItem {
+  @apply grid grid-cols-2 mt-8 gap-x-2;
+}

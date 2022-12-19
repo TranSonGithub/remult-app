@@ -12,3 +12,14 @@ export const routerMenu = {
   main: '/user/menu/main',
   drink: '/user/menu/drink',
 };
+
+export const routerAdmin = {
+  root: '/admin',
+  menu: '/admin/menu',
+  order: '/admin/order',
+  profile: '/admin/profile',
+};
+export const routerMenuAdmin = {
+  main: '/admin/menu/main',
+  drink: '/admin/menu/drink',
+};

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import iconCloseWhite from '../../../assets/icon/closeWhite.svg';
 import Pizza from '../../../assets/image/pizza.png';
 import Number from '../number/Number';
-import { modalActions, selectShowBooking } from '../../../features/modal/modalSlice';
+import { modalActions, selectShow } from '../../../features/modal/modalSlice';
 
 import './style.css';
 
@@ -12,7 +12,7 @@ const ModalBooking = () => {
   const total = '40.000';
 
   const handleCloseModal = () => {
-    dispatch(modalActions.hideModalBooking({ modalBooking: { show: false } }));
+    dispatch(modalActions.hideModal({ modalBooking: { show: false } }));
   };
 
   return (

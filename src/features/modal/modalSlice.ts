@@ -1,20 +1,29 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IModal, IModalBooking } from '../../interface/modal';
 import { RootState } from '../../app/store';
+import { typeModal } from '../../utils/constants';
 
 const initialState: IModal = {
   modalBooking: { show: false },
+  modalAddMenu: { show: false },
+  type: null,
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    showModalBooking(state: IModal, actions: PayloadAction<IModal>) {
-      console.log(`[slice][showModalBooking] payload -> ${JSON.stringify(actions.payload)}`);
-      state.modalBooking = actions.payload.modalBooking;
+    showModal(state: IModal, actions: PayloadAction<IModal>) {
+      console.log(`[slice][showModal] payload -> ${JSON.stringify(actions.payload)}`);
+      const type = actions.payload.type;
+      switch (type) {
+        case typeModal.modalBooking:
+          state.modalBooking = actions.payload.modalBooking;
+        case typeModal.modalAddMenu:
+          state.modalAddMenu = actions.payload.modalAddMenu;
+      }
     },
-    hideModalBooking(state, actions: PayloadAction<IModal>) {
+    hideModal(state, actions: PayloadAction<IModal>) {
       state.modalBooking = actions.payload.modalBooking;
     },
 
@@ -26,7 +35,8 @@ const modalSlice = createSlice({
 
 export const modalActions = modalSlice.actions;
 
-export const selectShowBooking = (state: RootState) => state.modal.modalBooking;
+export const selectModalBooking = (state: RootState) => state.modal.modalBooking;
+export const selectModalAddMenu = (state: RootState) => state.modal.modalAddMenu;
 
 const modalReducer = modalSlice.reducer;
 export default modalReducer;

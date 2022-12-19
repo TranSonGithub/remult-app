@@ -1,0 +1,61 @@
+.adminMenuItem__container {
+  @apply relative p-10;
+  border: 1px solid var(--primary);
+  border-radius: 15px;
+}
+.adminMenuItem__content {
+  @apply mb-5 flex;
+}
+.adminMenuItem__titleContent {
+  @apply ml-8 mt-3;
+}
+
+.titleContent__title {
+  @apply mb-3;
+}
+.titleContent__price {
+  @apply font-bold;
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.adminMenuItem__des p {
+  @apply inline;
+}
+
+.adminMenuItem__threeDots {
+  @apply absolute cursor-pointer;
+  top: 25px;
+  right: 25px;
+  width: 25px;
+  height: 25px;
+}
+.adminMenuItem__threeDots img {
+  @apply w-full h-full;
+}
+
+.modal__action {
+  @apply absolute text-center;
+  top: 30px;
+  right: 50px;
+  width: 150px;
+  height: 80px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  background: white;
+}
+.modal__action--item {
+  @apply py-2 cursor-pointer;
+  height: 50%;
+}
+.modal__action--edit {
+  border-bottom: 1px solid var(--primary);
+}
+.modal__action--edit:hover {
+  background: var(--primary);
+  border-radius: 10px 10px 0 0;
+}
+.modal__action--delete:hover {
+  background: var(--primary);
+  border-radius: 0 0 10px 10px;
+}

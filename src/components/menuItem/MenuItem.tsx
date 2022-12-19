@@ -3,6 +3,7 @@ import imagePizza from '../../assets/image/pizza.png';
 import { IMenuItem } from '../../interface/menu';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../features/modal/modalSlice';
+import { typeModal } from '../../utils/constants';
 
 const MenuItem = (menuItem: IMenuItem) => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const MenuItem = (menuItem: IMenuItem) => {
   const priceMax = menuItem.size.reduce((result, item) => (item.price > result.price ? item : result));
 
   const handleBooking = (e: any) => {
-    dispatch(modalActions.showModalBooking({ modalBooking: { show: true } }));
+    dispatch(modalActions.showModal({ modalBooking: { show: true }, type: typeModal.modalAddMenu } as any));
   };
 
   return (
