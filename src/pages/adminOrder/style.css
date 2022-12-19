@@ -1,0 +1,28 @@
+.adminOrder__search {
+  @apply flex justify-between;
+  /* width: 500px; */
+}
+.adminOrder__search form {
+  width: 500px;
+}
+
+.adminOrder__tableList {
+  @apply mt-20;
+}
+.tableList__header {
+  @apply px-5 py-3.5 mb-10 grid grid-cols-9 justify-items-center;
+  background: var(--primary);
+  border-radius: 5px;
+}
+.header__id {
+  @apply col-span-1;
+}
+.header__nameCustomer,
+.header__phoneNumber,
+.header__total,
+.header__status {
+  @apply col-span-2;
+}
+.header__item {
+  @apply font-bold;
+}

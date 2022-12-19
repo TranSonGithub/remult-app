@@ -1,0 +1,45 @@
+.tableList__item {
+  @apply py-4 relative;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: white;
+}
+.arrow__item {
+  @apply absolute font-medium cursor-pointer;
+  width: 30px;
+  height: 30px;
+  top: 13px;
+  right: 15px;
+}
+.arrow__item img {
+  @apply w-full h-full;
+}
+
+/* Detail when show */
+.detail__container {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.detail__header {
+  @apply pl-8 pr-16 py-4 relative flex justify-between;
+  border-bottom: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  background: white;
+}
+.detail__arrow {
+  @apply absolute font-medium cursor-pointer;
+  width: 30px;
+  height: 30px;
+  top: 13px;
+  right: 15px;
+}
+
+.detail__action {
+  @apply cursor-pointer;
+  color: var(--blue);
+}
+
+/* Item when show */
+.detail__item {
+  @apply p-10;
+}

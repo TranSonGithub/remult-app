@@ -1,0 +1,24 @@
+.adminProfile__title {
+  @apply mb-10;
+}
+
+.adminProfile__info {
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+}
+.infoProfile__title {
+  @apply p-5 font-bold;
+  font-size: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.infoProfile__detail {
+  @apply pb-5 px-10 grid grid-cols-4 gap-x-5;
+}
+.infoProfile__detail div:nth-child(1),
+.infoProfile__detail div:nth-child(2),
+.infoProfile__detail div:nth-child(3) {
+  @apply col-span-2;
+}
+.infoProfile__detail .adminInput__container {
+  @apply mt-8;
+}
