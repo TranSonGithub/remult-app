@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Login from './pages/login';
 
 function ProtectedRoutes() {
-  const token = 'abc';
+  const token = null;
 
   return token ? <Outlet /> : <Login />;
 }

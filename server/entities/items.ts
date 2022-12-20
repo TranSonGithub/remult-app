@@ -1,15 +1,12 @@
 import { Entity, Fields } from 'remult';
 
-@Entity('tests', {
+@Entity('items', {
   allowApiCrud: true,
 })
-export class Test {
+export class Item {
   @Fields.uuid()
-  id!: string;
+  id: string;
 
   @Fields.string()
-  name = '';
-
-  @Fields.number()
-  unitPrice = 0;
+  description: string;
 }

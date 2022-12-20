@@ -1,13 +1,19 @@
 import React from 'react';
+import { AdminController } from '../../../server/api/admin';
 import './style.css';
 
 function LoginPage() {
+  const handleLogin = async () => {
+    const result = await AdminController.getAdmin();
+    console.log('result', result);
+  };
+
   return (
     <div className='loginPage'>
       <div className='loginPage__bg'></div>
       <div className='loginPage__content'>
         <div className='text__title--primary loginPage__title'>Chào mừng đến với Pizza custo</div>
-        <form action=''>
+        <div>
           <div className='mb-10'>
             <label htmlFor='' className='text-gray-800'>
               Email
@@ -30,14 +36,14 @@ function LoginPage() {
           </div>
 
           <button
-            type='submit'
             className='loginPage__login inline-block px-7 py-3 bg-[#fbbf24] text-white font-bold text-sm leading-snug uppercase rounded shadow-md hover:bg-[#f59e0b] hover:shadow-lg focus:bg-[#f59e0b] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#f59e0b] active:shadow-lg transition duration-150 ease-in-out w-full'
             data-mdb-ripple='true'
             data-mdb-ripple-color='light'
+            onClick={handleLogin}
           >
             Đăng nhập
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
