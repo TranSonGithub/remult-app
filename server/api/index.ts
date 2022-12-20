@@ -1,4 +1,8 @@
-import axios from 'axios';
-import { Remult } from 'remult';
+import { Router } from 'express';
+import authRoute from '../api/auth';
 
-export const remult = new Remult(axios);
+const indexApi = Router();
+
+indexApi.use('/auth', authRoute);
+
+export default indexApi;

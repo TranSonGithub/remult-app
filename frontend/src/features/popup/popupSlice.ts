@@ -13,7 +13,6 @@ const popupSlice = createSlice({
   initialState,
   reducers: {
     showPopup(state: IPopup, actions: PayloadAction<IPopup>) {
-      console.log(`[slice][showModal] payload -> ${JSON.stringify(actions.payload)}`);
       state.show = actions.payload.show;
     },
     hidePopup(state, actions: PayloadAction<IPopup>) {

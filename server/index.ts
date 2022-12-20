@@ -1,30 +1,27 @@
 import express from 'express';
-import { remultExpress } from 'remult/remult-express';
-
+import { initDbConnection } from './db';
 import config from './utils/config';
-import { Test } from './entities/test';
-import { MongoClient } from 'mongodb';
-import { MongoDataProvider } from 'remult/remult-mongo';
-import { Admin } from './entities/admin';
-import { AdminController } from './api/admin';
+import session from 'express-session';
+import indexApi from './api/index';
 
 const app = express();
 
+initDbConnection();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.set('trust proxy', 1); // trust first proxy
 app.use(
-  remultExpress({
-    // entities: [Test, Admin],
-    controllers: [AdminController],
-    dataProvider: async () => {
-      try {
-        const client = new MongoClient(config.DB_URL);
-        await client.connect();
-        return new MongoDataProvider(client.db(config.DB_NAME), client);
-      } catch (e: any) {
-        console.log(`[DB][connectDB] error -> ${e.message}`);
-      }
-    },
+  session({
+    secret: config.SESSION_SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
+
+app.use('/api', indexApi);
 
 app.listen(config.SERVER_POST, () => {
   console.log(`Server started on port ${config.SERVER_POST}`);

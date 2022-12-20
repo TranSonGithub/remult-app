@@ -1,0 +1,14 @@
+.loading {
+  @apply absolute w-full h-full;
+  top: 0;
+  background-color: rgba(217, 217, 217, 50%);
+  border-radius: 10px;
+}
+
+.loading__icon {
+  @apply fixed;
+  width: 80px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}

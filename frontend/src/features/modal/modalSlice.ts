@@ -14,7 +14,6 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     showModal(state: IModal, actions: PayloadAction<IModal>) {
-      console.log(`[slice][showModal] payload -> ${JSON.stringify(actions.payload)}`);
       const type = actions.payload.type;
       switch (type) {
         case typeModal.modalBooking:

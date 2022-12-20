@@ -5,11 +5,11 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    // "module": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -17,5 +17,4 @@
     "jsx": "react-jsx",
   },
   "include": ["src", "server/api"],
-  "references": [{ "path": "./tsconfig.node.json" }]
 }
