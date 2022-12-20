@@ -43,3 +43,25 @@
 .detail__item {
   @apply p-10;
 }
+.detail__order {
+  @apply p-10;
+}
+
+.detail__item {
+  @apply pb-5 px-10 grid grid-cols-7 gap-x-5 gap-y-5;
+}
+
+.detail__item div:nth-child(1),
+.detail__item div:nth-child(2),
+.detail__item div:nth-child(3),
+.detail__item div:nth-child(4),
+.detail__item div:nth-child(5),
+.detail__item div:nth-child(6) {
+  @apply col-span-2;
+}
+.detail__item .adminInput__container {
+  @apply mt-5;
+}
+.detail__orderList {
+  @apply mt-10 grid grid-cols-2 gap-x-4;
+}

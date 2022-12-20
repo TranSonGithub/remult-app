@@ -3,6 +3,7 @@ import './style.css';
 import DownArrow from '../../assets/icon/downArrow.svg';
 import UpArrow from '../../assets/icon/upArrow.svg';
 import AdminInput from '../common/adminInput/AdminInput';
+import AdminItemOrder from '../adminItemOrder/adminItemOrder';
 
 const ItemList = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -21,7 +22,18 @@ const ItemList = () => {
         </div>
       </div>
       <div className='detail__item'>
-        <AdminInput />
+        <AdminInput title='ID' content={'#23-34546'} />
+        <AdminInput title='Trạng thái' content={'Đang chuẩn bị'} />
+        <AdminInput title='Tổng tiền' content={'120.000 Đ'} />
+        <AdminInput title='Khách hàng' content={'Nguyễn Văn A'} />
+        <AdminInput title='Số điện thoại' content={'098 7654 321'} />
+        <AdminInput title='Địa chỉ' content={'Hàm Nghi, Hà Nội'} />
+      </div>
+      <div className='detail__order'>
+        <div className='adminInput__label'>Chi tiết đơn hàng</div>
+        <div className='detail__orderList'>
+          <AdminItemOrder />
+        </div>
       </div>
     </div>
   ) : (

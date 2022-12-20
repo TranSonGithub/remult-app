@@ -1,0 +1,24 @@
+.adminItemOrder__container {
+  @apply grid grid-cols-4 items-center pb-5;
+  border-bottom: 1px solid #a5b1c2;
+}
+.adminItemOrder__avatar {
+  width: 100px;
+  height: 100px;
+}
+.adminItemOrder__avatar img {
+  @apply w-full h-full;
+}
+
+.adminItemOrder__content {
+  @apply ml-5 col-span-2;
+}
+.adminItemOrder__title {
+  @apply mb-5;
+}
+.adminItemOrder__subTitle {
+  color: #828282;
+}
+.adminItemOrder__price {
+  @apply mt-12 ml-2 justify-self-end;
+}
