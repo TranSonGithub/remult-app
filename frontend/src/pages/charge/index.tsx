@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import ChargeItem from '../../components/chargeItem/ChargeItem';
 
 const ChargePage = () => {
@@ -13,8 +14,33 @@ const ChargePage = () => {
           <input className='chargePage__input chargePage__address' placeholder='Địa chỉ' />
           <textarea className='chargePage__input chargePage__note' placeholder='Ghi chú cho cửa hàng'></textarea>
         </form>
-        <p className='chargePage__text'>Thanh toán khi nhận hàng</p>
-        <button className='chargePage__pay'>Đặt hàng</button>
+        <div className='chargePage__payment'>
+          <PayPalScriptProvider
+            options={{
+              'client-id': 'AbTFmaHHW90LviY8srwECgUbQh7-i9i3synq4KgYzPx2A_Zzqg0J7gGA-7pG68GureFZ9ATWriLEe7Jx',
+            }}
+          >
+            <PayPalButtons
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: '1.00',
+                      },
+                    },
+                  ],
+                });
+              }}
+              onApprove={async (data, actions) => {
+                const details = await actions.order?.capture();
+                const name = details?.payer.name?.given_name;
+                alert('Transaction completed by ' + name);
+              }}
+            />
+          </PayPalScriptProvider>
+          <button className='chargePage__pay'>Đặt hàng</button>
+        </div>
       </div>
       <div className='chargePage__right'>
         <div className='chargePage__listItem'>
