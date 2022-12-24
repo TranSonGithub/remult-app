@@ -1,5 +1,5 @@
 .chargeItem__container {
-  @apply flex;
+  @apply flex mt-10;
 }
 
 .chargeItem__avatar {

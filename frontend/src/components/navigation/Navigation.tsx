@@ -32,7 +32,7 @@ const Navigation = (props: any) => {
           <Link className='cart__image relative' to='/user/cart'>
             <img src={shoppingCart} alt='shopping-cart' />
             <div className='cart__number absolute'>
-              <p>2</p>
+              <p>3</p>
             </div>
           </Link>
         </div>

@@ -11,10 +11,16 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    name: {
+      type: String,
+      required: true,
+    },
     restaurantInfo: {
       name: String,
       address: String,
+      email: String,
+      dkkd: Number,
+      phoneNumber: String,
     },
   },
   { timestamps: true }

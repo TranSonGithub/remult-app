@@ -1,5 +1,5 @@
 .cartItem__container {
-  @apply flex justify-around pb-5;
+  @apply flex justify-around pb-5 mt-10;
   border-bottom: solid 1px var(--textBlack);
 }
 

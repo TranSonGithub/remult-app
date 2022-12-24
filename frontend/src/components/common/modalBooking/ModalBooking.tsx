@@ -5,14 +5,15 @@ import Number from '../number/Number';
 import { modalActions, selectShow } from '../../../features/modal/modalSlice';
 
 import './style.css';
+import { typeModal } from '../../../utils/constants';
 
 const ModalBooking = () => {
   const dispatch = useDispatch();
 
-  const total = '40.000';
+  const total = '80.000';
 
   const handleCloseModal = () => {
-    dispatch(modalActions.hideModal({ modalBooking: { show: false } }));
+    dispatch(modalActions.hideModal({ modalBooking: { show: false }, type: typeModal.modalBooking } as any));
   };
 
   return (

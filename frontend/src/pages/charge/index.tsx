@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import ChargeItem from '../../components/chargeItem/ChargeItem';
+import { mockCarts } from '../../mock/cart';
 
 const ChargePage = () => {
   return (
@@ -26,7 +27,7 @@ const ChargePage = () => {
                   purchase_units: [
                     {
                       amount: {
-                        value: '1.00',
+                        value: '1',
                       },
                     },
                   ],
@@ -44,12 +45,14 @@ const ChargePage = () => {
       </div>
       <div className='chargePage__right'>
         <div className='chargePage__listItem'>
-          <ChargeItem />
+          {mockCarts.map((e, idx) => (
+            <ChargeItem {...e} key={idx} />
+          ))}
         </div>
         <div className='chargePage__underline'></div>
         <div className='chargePage__total'>
           <b>Tổng</b>
-          <p>200.000 VND</p>
+          <p>230.000 VND</p>
         </div>
       </div>
     </div>

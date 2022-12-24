@@ -1,12 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../features/auth/authSlice';
+import { loadingActions } from '../../features/loading/loading';
 import './style.css';
 
 function LoginPage() {
-  const handleLogin = async (e: any) => {
-    const email = e.target.email.value;
-    const password = e.target.email.password;
+  const dispatch = useDispatch();
 
+  const handleLogin = async (e: any) => {
     e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(`[Saga][handleLogin] handleSaga-> email: ${email}, password: ${password}`);
+
+    dispatch(loadingActions.changeLoading({ show: true }));
+    dispatch(authActions.login({ email, password }));
   };
 
   return (

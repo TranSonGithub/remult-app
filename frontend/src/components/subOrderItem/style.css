@@ -1,5 +1,5 @@
 .subOrderItem__container {
-  @apply flex justify-start pb-5 px-10;
+  @apply flex justify-start pb-5 px-10 mt-10;
   border-bottom: solid 1px var(--textBlack);
 }
 

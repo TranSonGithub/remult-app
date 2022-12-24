@@ -8,11 +8,23 @@ import './style.css';
 
 import logo from '../../assets/image/logo.png';
 import { routerAdmin, routerMenuAdmin } from '../../utils/route';
+import { redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../features/auth/authSlice';
+import { history } from '../../utils/history';
 
 const Menu = (props: any) => {
+  const dispatch = useDispatch();
+
   const { pathname } = props;
   const activeMenu = (...routes: any) => {
     return routes.includes(pathname) ? 'menu__active ' : '';
+  };
+
+  const handleLogout = (e: any) => {
+    localStorage.clear();
+    dispatch(authActions.clearState({}));
+    history.go(0);
   };
 
   return (
@@ -51,7 +63,7 @@ const Menu = (props: any) => {
           <div className='logout__name'>Trần Sơn</div>
           <div className='logout__title'>Admin</div>
         </div>
-        <div className='logout__icon'>
+        <div className='logout__icon' onClick={handleLogout}>
           <img src={AdminOut} alt='' />
         </div>
       </div>

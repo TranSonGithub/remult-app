@@ -30,7 +30,7 @@ export const mockMenuMain = [
     size: [
       {
         name: 'Size S',
-        price: '20.000',
+        price: '10.000',
         size: 10,
       },
       {
@@ -40,7 +40,7 @@ export const mockMenuMain = [
       },
       {
         name: 'Size L',
-        price: '50.000',
+        price: '80.000',
         size: 40,
       },
     ],
@@ -53,7 +53,7 @@ export const mockMenuMain = [
     size: [
       {
         name: 'Size S',
-        price: '20.000',
+        price: '25.000',
         size: 10,
       },
       {
@@ -63,7 +63,7 @@ export const mockMenuMain = [
       },
       {
         name: 'Size L',
-        price: '50.000',
+        price: '45.000',
         size: 40,
       },
     ],
@@ -76,7 +76,7 @@ export const mockMenuMain = [
     size: [
       {
         name: 'Size S',
-        price: '20.000',
+        price: '15.000',
         size: 10,
       },
       {
@@ -86,7 +86,7 @@ export const mockMenuMain = [
       },
       {
         name: 'Size L',
-        price: '50.000',
+        price: '60.000',
         size: 40,
       },
     ],

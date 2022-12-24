@@ -12,7 +12,7 @@ const MenuItem = (menuItem: IMenuItem) => {
   const priceMax = menuItem.size.reduce((result, item) => (item.price > result.price ? item : result));
 
   const handleBooking = (e: any) => {
-    dispatch(modalActions.showModal({ modalBooking: { show: true }, type: typeModal.modalAddMenu } as any));
+    dispatch(modalActions.showModal({ modalBooking: { show: true }, type: typeModal.modalBooking } as any));
   };
 
   return (

@@ -1,4 +1,4 @@
-export const mockCart = [
+export const mockCarts = [
   {
     avatar: null,
     name: 'Detroit pizza',
@@ -6,15 +6,17 @@ export const mockCart = [
     type: 'MAIN',
     size: {
       name: 'Size S',
-      price: '20.000',
+      price: '10.000',
       size: 10,
     },
-    option: 'Thêm phô mai: 10.000',
+    option: 'Thêm nhiều phô mai: 20.000',
     number: 2,
+    price: '80.000',
   },
   {
     avatar: null,
-    name: 'Coca cola',
+    name: 'Pizza truyền thống',
+    option: 'Thêm nhiều phô mai: 20.000',
     description: '',
     type: 'DRINK',
     size: {
@@ -22,7 +24,21 @@ export const mockCart = [
       price: '20.000',
       size: 10,
     },
-    option: 'Thêm phô mai: 10.000',
     number: 2,
+    price: '80.000',
+  },
+  {
+    avatar: null,
+    name: 'Pizzal hot',
+    description: 'Xúc xích Salami, hành tây, sốt cà chua, pho mai.',
+    type: 'MAIN',
+    size: {
+      name: 'Size S',
+      price: '20.000',
+      size: 10,
+    },
+    option: 'Thêm nhiều phô mai: 20.000',
+    number: 2,
+    price: '70.000',
   },
 ];

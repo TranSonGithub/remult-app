@@ -1,10 +1,11 @@
 import axiosClient from '.';
 
 const authApi = {
-  login(params: any) {
-    // const url = `/${urls.USERS}/login`;
+  async login(params: any) {
+    console.log(`[api][login] params -> ${JSON.stringify(params, null, 2)}`);
+
     const url = '/auth/login';
-    return axiosClient.get(url, params);
+    return await axiosClient.post(url, params);
   },
 };
 
