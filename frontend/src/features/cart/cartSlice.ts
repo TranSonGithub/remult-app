@@ -1,19 +1,50 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IModal, IModalBooking } from '../../interface/modal';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { typeModal } from '../../utils/constants';
-import { ILoading } from '../../interface/loading';
+import { history } from '../../utils/history';
+import { routerUser } from './../../utils/route';
 
 const initialState = {
-  show: false,
+  total: 0,
+  items: [],
+  success: false,
+  message: '',
+  orders: [],
 };
 
-const loadingSlice = createSlice({
-  name: 'modal',
+const cartSlice = createSlice({
+  name: 'cart',
   initialState,
   reducers: {
-    changeLoading(state: ILoading, actions: PayloadAction<ILoading>) {
-      state.show = actions.payload.show;
+    addCart(state, actions) {
+      console.log(`[cartSlice] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+      state.total = actions.payload.total;
+      const item = actions.payload.item as never;
+      state.items.push(item);
+    },
+    removeCart(state, actions) {
+      state.items = actions.payload.items;
+    },
+
+    chargeCart(state, actions) {
+      console.log(`[cartSlice][chargeCart] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+    },
+    chargeCartFail(state, actions) {
+      console.log(`[slice][getMenusFail] payload -> ${JSON.stringify(actions.payload)}`);
+      state.success = false;
+      state.message = actions.payload;
+    },
+
+    getOrders(state, actions) {
+      console.log(`[cartSlice][chargeCart] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+    },
+    getOrdersSuccess(state, actions) {
+      console.log(`[cartSlice][chargeCart] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+      state.orders = actions.payload;
+    },
+    getOrdersFail(state, action) {
+      console.log(`[slice][getMenusFail] payload -> ${JSON.stringify(action.payload)}`);
+      state.success = false;
+      state.message = action.payload;
     },
 
     resetState(state) {
@@ -22,9 +53,12 @@ const loadingSlice = createSlice({
   },
 });
 
-export const loadingActions = loadingSlice.actions;
+export const cartActions = cartSlice.actions;
 
-export const selectShow = (state: RootState) => state.loading.show;
+export const selectCartNumber = (state: RootState) => state.cart.items.length;
+export const selectCartTotal = (state: RootState) => state.cart.total;
+export const selectCartItems = (state: RootState) => state.cart.items;
+export const selectOrders = (state: RootState) => state.cart.orders;
 
-const loadingReducer = loadingSlice.reducer;
-export default loadingReducer;
+const cartReducer = cartSlice.reducer;
+export default cartReducer;

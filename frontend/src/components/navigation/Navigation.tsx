@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/image/logo.png';
 import shoppingCart from '../../assets/image/shopping-cart.png';
+import cartReducer, { cartActions, selectCartNumber } from '../../features/cart/cartSlice';
 import { routerUser } from '../../utils/route';
 import './style.css';
 
@@ -11,6 +13,8 @@ const Navigation = (props: any) => {
     const paths = pathname.split('/');
     return path === `/${paths.slice(1, 3).join('/')}` ? 'active' : '';
   };
+
+  const cartNumber = useSelector(selectCartNumber);
 
   return (
     <div className={pathname === '/' ? 'container__nav--home ' : 'container__nav'}>
@@ -32,7 +36,7 @@ const Navigation = (props: any) => {
           <Link className='cart__image relative' to='/user/cart'>
             <img src={shoppingCart} alt='shopping-cart' />
             <div className='cart__number absolute'>
-              <p>3</p>
+              <p>{cartNumber}</p>
             </div>
           </Link>
         </div>

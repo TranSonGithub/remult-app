@@ -20,6 +20,7 @@ const OrderSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+      notes: String,
     },
     total: {
       type: Number,
@@ -30,7 +31,6 @@ const OrderSchema = new mongoose.Schema(
       enum: StatusOrder,
       default: StatusOrder.READY,
     },
-    notes: String,
   },
   { timestamps: true }
 );

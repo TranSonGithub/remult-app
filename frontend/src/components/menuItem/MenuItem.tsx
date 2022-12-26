@@ -3,10 +3,10 @@ import imagePizza from '../../assets/image/pizza.png';
 import { IMenuItem } from '../../interface/menu';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../features/modal/modalSlice';
-import { typeModal } from '../../utils/constants';
+import { typeMenu, typeModal } from '../../utils/constants';
 
 const MenuItem = (props: any) => {
-  const { img, name, description, sizes } = props.menuItem;
+  const { _id, img, name, description, sizes, type } = props.menuItem;
   const dispatch = useDispatch();
 
   const priceMin = sizes.reduce((result: any, item: any) => (item.price < result.price ? item : result));
@@ -15,7 +15,7 @@ const MenuItem = (props: any) => {
   const handleBooking = (e: any) => {
     dispatch(
       modalActions.showModal({
-        modalBooking: { show: true, item: { img, name, description, sizes } },
+        modalBooking: { show: true, item: { _id, img, name, description, sizes, type } },
         type: typeModal.modalBooking,
       } as any)
     );
@@ -30,9 +30,7 @@ const MenuItem = (props: any) => {
         <p>{name.toUpperCase()}</p>
       </div>
       <div className='menuItem__price'>
-        <p>
-          {priceMin.price} - {priceMax.price}
-        </p>
+        <p>{type === typeMenu.main ? `${priceMin.price} - ${priceMax.price}` : `${priceMin.price}`}</p>
       </div>
       <div className='menuItem__buttonBook' onClick={handleBooking}>
         <p>Đặt mua</p>

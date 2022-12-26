@@ -14,6 +14,8 @@ const popupSlice = createSlice({
   reducers: {
     showPopup(state: IPopup, actions: PayloadAction<IPopup>) {
       state.show = actions.payload.show;
+      state.content = actions.payload.content;
+      state.numberButton = actions.payload.numberButton;
     },
     hidePopup(state, actions: PayloadAction<IPopup>) {
       state.show = actions.payload.show;

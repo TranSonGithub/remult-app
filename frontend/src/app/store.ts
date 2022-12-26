@@ -8,6 +8,7 @@ import popupReducer from '../features/popup/popupSlice';
 import loadingReducer from '../features/loading/loading';
 import authReducer from '../features/auth/authSlice';
 import menuReducer from '../features/menu/menuSlice';
+import cartReducer from '../features/cart/cartSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -19,6 +20,7 @@ export const store = configureStore({
     loading: loadingReducer,
     auth: authReducer,
     menu: menuReducer,
+    cart: cartReducer,
   },
   middleware,
 });

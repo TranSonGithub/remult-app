@@ -12,12 +12,11 @@ const OrderItemSchema = new mongoose.Schema(
       ref: 'items',
     },
     number: Number,
-    options: [
-      {
-        name: String,
-        price: Number,
-      },
-    ],
+    sizeName: String,
+    options: {
+      name: String,
+      price: Number,
+    },
   },
   { timestamps: true }
 );
