@@ -4,7 +4,7 @@ import { RootState } from '../../app/store';
 import { typeModal } from '../../utils/constants';
 
 const initialState: IModal = {
-  modalBooking: { show: false },
+  modalBooking: { show: false, item: {} },
   modalAddMenu: { show: false },
   type: null,
 };

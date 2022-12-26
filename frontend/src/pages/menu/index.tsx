@@ -1,12 +1,21 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { menuActions, selectMenuList } from '../../features/menu/menuSlice';
 import { mockMenuDrink, mockMenuMain } from '../../mock/menu';
 import { routerMenu, routerUser } from '../../utils/route';
 import './style.css';
+import { loadingActions } from '../../features/loading/loading';
 
 const MenuPage = () => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const menuDrink = mockMenuDrink;
-  const menuMain = mockMenuMain;
+  const menu = useSelector(selectMenuList);
+
+  useEffect(() => {
+    dispatch(loadingActions.changeLoading({ show: true }));
+    dispatch(menuActions.getMenus({}));
+  }, []);
 
   return (
     <div className='menuPage__container'>
@@ -31,7 +40,7 @@ const MenuPage = () => {
         </Link>
       </div>
       <div className='menuPage__content'>
-        <Outlet context={{ menuDrink, menuMain }} />
+        <Outlet context={{ menuDrink: menu.menuDrink, menuMain: menu.menuMain }} />
       </div>
     </div>
   );

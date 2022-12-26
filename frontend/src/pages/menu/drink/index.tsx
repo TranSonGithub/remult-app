@@ -13,7 +13,7 @@ const MenuDrink = () => {
 
       <div className='menuAll__item'>
         {menuDrink.map((menuItem, idx) => (
-          <MenuItem key={idx} {...menuItem} />
+          <MenuItem key={idx} menuItem={menuItem} />
         ))}
       </div>
     </div>

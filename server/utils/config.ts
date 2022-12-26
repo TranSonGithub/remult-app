@@ -8,4 +8,9 @@ export default {
   SESSION_SECRET_KEY: 'abcxyz',
 
   SALT_ROUND: 10,
+
+  // File
+  FILE_STORAGE_URL: 'public',
+  FILE_BASE_URL: 'http://localhost:5000/api/image',
+  FILE_MAX_SIZE: 10000,
 };

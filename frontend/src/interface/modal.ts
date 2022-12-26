@@ -2,6 +2,7 @@ import { TypeModal } from '../utils/type';
 
 export interface IModalBooking {
   show: boolean;
+  item: any;
 }
 
 export interface IModalAddMenu {

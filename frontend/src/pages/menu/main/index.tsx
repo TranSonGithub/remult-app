@@ -12,7 +12,7 @@ const MenuMain = () => {
 
       <div className='menuAll__item'>
         {menuMain.map((menuItem, idx) => (
-          <MenuItem key={idx} {...menuItem} />
+          <MenuItem key={idx} menuItem={menuItem} />
         ))}
       </div>
     </div>

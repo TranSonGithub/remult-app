@@ -4,10 +4,13 @@ import iconThreeDotsVertical from '../../assets/icon/three-dots-vertical.svg';
 import './style.css';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../features/modal/modalSlice';
-import { typeModal } from '../../utils/constants';
+import { typeMenu, typeModal } from '../../utils/constants';
 import { TypeModal } from '../../utils/type';
 
-const AdminMenuItem = () => {
+const AdminMenuItem = (props: any) => {
+  const { name, img, description, sizes, type } = props.item;
+  const newSizes = [...sizes].sort((a: any, b: any) => Number(a.price) - Number(b.price));
+
   const dispatch = useDispatch();
   const [showModalAction, setShowModalAction] = useState(false);
 
@@ -22,11 +25,15 @@ const AdminMenuItem = () => {
     <div className='adminMenuItem__container'>
       <div className='adminMenuItem__content'>
         <div className='avatar adminMenuItem__avatar'>
-          <img src={Pizza} alt='' />
+          <img src={img || Pizza} alt='' />
         </div>
         <div className='adminMenuItem__titleContent'>
-          <div className='text__title titleContent__title'>Pizza hot</div>
-          <div className='titleContent__price'>20.000 - 25.000</div>
+          <div className='text__title titleContent__title'>{name}</div>
+          <div className='titleContent__price'>
+            {type === typeMenu.main
+              ? `${newSizes[0]?.price} - ${newSizes[sizes.length - 1]?.price}`
+              : `${newSizes[0]?.price}`}
+          </div>
         </div>
         <div className='adminMenuItem__threeDots' onClick={handleShowModalAction}>
           <img src={iconThreeDotsVertical} alt='' />
@@ -34,7 +41,7 @@ const AdminMenuItem = () => {
       </div>
       <div className='adminMenuItem__des'>
         <b>Thành phần: </b>
-        <p>Xúc xích Salami, hành tây, sốt cà chua, phô mai.</p>
+        <p>{description}</p>
       </div>
       {showModalAction && (
         <div className='modal__action'>

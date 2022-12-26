@@ -5,23 +5,29 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../../features/modal/modalSlice';
 import { typeModal } from '../../utils/constants';
 
-const MenuItem = (menuItem: IMenuItem) => {
+const MenuItem = (props: any) => {
+  const { img, name, description, sizes } = props.menuItem;
   const dispatch = useDispatch();
 
-  const priceMin = menuItem.size.reduce((result, item) => (item.price < result.price ? item : result));
-  const priceMax = menuItem.size.reduce((result, item) => (item.price > result.price ? item : result));
+  const priceMin = sizes.reduce((result: any, item: any) => (item.price < result.price ? item : result));
+  const priceMax = sizes.reduce((result: any, item: any) => (item.price > result.price ? item : result));
 
   const handleBooking = (e: any) => {
-    dispatch(modalActions.showModal({ modalBooking: { show: true }, type: typeModal.modalBooking } as any));
+    dispatch(
+      modalActions.showModal({
+        modalBooking: { show: true, item: { img, name, description, sizes } },
+        type: typeModal.modalBooking,
+      } as any)
+    );
   };
 
   return (
     <div className='menuItem__container'>
       <div className='menuItem__avatar'>
-        <img src={menuItem.avatar || imagePizza} alt='' />
+        <img src={img || imagePizza} alt='' />
       </div>
       <div className='menuItem__title'>
-        <p>{menuItem.name.toUpperCase()}</p>
+        <p>{name.toUpperCase()}</p>
       </div>
       <div className='menuItem__price'>
         <p>

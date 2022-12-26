@@ -32,6 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+app.use('/api/image', express.static(config.FILE_STORAGE_URL!));
 app.use('/api', indexApi);
 
 app.listen(config.SERVER_POST, () => {

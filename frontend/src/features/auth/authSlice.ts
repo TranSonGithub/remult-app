@@ -3,7 +3,7 @@ import { RootState } from './../../app/store';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  token: '',
+  token: localStorage.getItem('token'),
   success: false,
   message: '',
 };
