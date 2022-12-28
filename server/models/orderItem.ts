@@ -13,6 +13,7 @@ const OrderItemSchema = new mongoose.Schema(
     },
     number: Number,
     sizeName: String,
+    total: String,
     options: {
       name: String,
       price: Number,

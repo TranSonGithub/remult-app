@@ -10,11 +10,12 @@ import { loadingActions } from '../../features/loading/loading';
 const ChargePage = () => {
   const dispatch = useDispatch();
   const cartList = useSelector(selectCartItems);
+  console.log('cartList', cartList);
 
   const [guestInfo, setGuestInfo] = useState({});
 
   const total = cartList.reduce((total, cart: any) => {
-    return total + cart.total;
+    return total + cart.total * cart.number;
   }, 0);
 
   const handleChangeInfo = (e: any) => {
@@ -31,9 +32,10 @@ const ChargePage = () => {
         number: e.number,
         option: e.option,
         sizeName: e.size.name,
+        total: e.total,
       };
     });
-    if (total !== 0) {
+    if (total !== 0 && Object.keys(guestInfo).length !== 0) {
       dispatch(loadingActions.changeLoading({ show: true }));
       dispatch(
         cartActions.chargeCart({

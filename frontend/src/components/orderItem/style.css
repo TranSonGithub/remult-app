@@ -1,7 +1,6 @@
-/* .orderItem__container {
-  border: solid 1px black;
-  border-radius: 10px;
-} */
+.orderItem__container {
+  @apply mt-10;
+}
 
 .orderItem__header {
   @apply relative flex py-6 px-12;

@@ -11,7 +11,7 @@
 }
 
 .cartItem__content {
-  @apply ml-12 mr-20;
+  @apply ml-12 mr-20 flex flex-col justify-between;
 }
 
 .cartItem__title {

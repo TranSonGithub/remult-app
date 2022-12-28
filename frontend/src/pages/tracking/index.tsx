@@ -4,11 +4,13 @@ import './style.css';
 import OrderItem from '../../components/orderItem/OrderItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../features/loading/loading';
-import { cartActions, selectOrders } from '../../features/cart/cartSlice';
+import { cartActions, selectOrders, selectPhoneNumber } from '../../features/cart/cartSlice';
+import { popupActions } from '../../features/popup/popupSlice';
 
 const TrackingPage = () => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrders);
+  const phoneNumberPayment = useSelector(selectPhoneNumber);
 
   const [phoneNumber, setPhoneNumber] = useState();
 
@@ -21,8 +23,10 @@ const TrackingPage = () => {
   };
 
   useEffect(() => {
+    console.log(`[TrackingPage] phoneNumber -> ${phoneNumberPayment}`);
     dispatch(loadingActions.changeLoading({ show: true }));
-    dispatch(cartActions.getOrders({}));
+    dispatch(cartActions.getOrders(phoneNumberPayment ? { phoneNumber: phoneNumberPayment } : {}));
+    dispatch(popupActions.resetPhoneNumber());
   }, []);
 
   console.log('orders', orders);
@@ -32,7 +36,7 @@ const TrackingPage = () => {
       <div className='trackingPage__title'>Kiểm tra đơn hàng của bạn</div>
       <div className='trackingPage__phoneNumber'>
         <input
-          type='number'
+          type='text'
           className='phoneNumber__input'
           placeholder='Nhập số điện thoại của bạn'
           onChange={handlePhoneNumber}

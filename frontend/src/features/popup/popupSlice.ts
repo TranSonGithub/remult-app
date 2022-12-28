@@ -6,6 +6,7 @@ const initialState: IPopup = {
   show: false,
   content: '',
   numberButton: 2,
+  type: '',
 };
 
 const popupSlice = createSlice({
@@ -13,12 +14,17 @@ const popupSlice = createSlice({
   initialState,
   reducers: {
     showPopup(state: IPopup, actions: PayloadAction<IPopup>) {
+      console.log(`[cartSlice] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
       state.show = actions.payload.show;
       state.content = actions.payload.content;
       state.numberButton = actions.payload.numberButton;
     },
     hidePopup(state, actions: PayloadAction<IPopup>) {
       state.show = actions.payload.show;
+    },
+
+    resetPhoneNumber(state) {
+      state.phoneNumber = undefined;
     },
 
     resetState(state) {
@@ -32,6 +38,7 @@ export const popupActions = popupSlice.actions;
 export const selectShowPopup = (state: RootState) => state.popup.show;
 export const selectContentPopup = (state: RootState) => state.popup.content;
 export const selectNumberButtonPopup = (state: RootState) => state.popup.numberButton;
+export const selectTypePopup = (state: RootState) => state.popup.type;
 
 const popupReducer = popupSlice.reducer;
 export default popupReducer;

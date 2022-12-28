@@ -19,4 +19,6 @@ export interface IPopup {
   show: boolean;
   content: string;
   numberButton: number;
+  phoneNumber?: string;
+  type: string;
 }

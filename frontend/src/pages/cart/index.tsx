@@ -1,26 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItem from '../../components/cartItem/CartItem';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { routerUser } from '../../utils/route';
 import { mockCarts } from '../../mock/cart';
-import { useSelector } from 'react-redux';
-import { selectCartItems } from '../../features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions, selectCartItems } from '../../features/cart/cartSlice';
 
 const CartPage = () => {
+  const dispatch = useDispatch();
   const cartList = useSelector(selectCartItems);
+  console.log('[CartPage] cartList', cartList);
 
-  console.log('cartList', cartList);
-  const total = cartList.reduce((total, cart: any) => {
-    return total + cart.total;
+  const stateTotal = cartList.reduce((total, cart: any) => {
+    return total + cart.total * cart.number;
   }, 0);
+  console.log('[CartPage] stateTotal', stateTotal);
+
+  const [total, setTotal] = useState(stateTotal);
+  const [newCart, setNewCart] = useState(cartList);
+
+  const handleChangeCart = (item: any, nb: any) => {
+    let itemCart = 0;
+    const arrCart: any = cartList.map((e: any) => {
+      if (e.item === item) {
+        itemCart = e.total;
+        return {
+          ...e,
+          number: e.number + 1,
+        };
+      }
+      return e;
+    });
+    setNewCart(arrCart);
+    setTotal(total + itemCart * nb);
+  };
+
+  const handleChargeCart = (e: any) => {
+    if (total !== 0) {
+      dispatch(cartActions.changeCart({ items: newCart }));
+    }
+  };
+
+  useEffect(() => {
+    setTotal(stateTotal);
+  }, [stateTotal]);
 
   return (
     <div className='menuPage__container'>
       <div className='text__title cartPage__title'>Giỏ hàng của bạn</div>
       <div className='cartPage__listItem'>
         {cartList.map((e: any, idx) => (
-          <CartItem {...e} key={idx} />
+          <CartItem {...e} key={idx} handleChangeCart={handleChangeCart} />
         ))}
       </div>
       <div className='menuPage__charge'>
@@ -28,7 +59,7 @@ const CartPage = () => {
           <b>Tổng</b>
           <p>{total ? `${total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}.000` : '0'} VND</p>
         </div>
-        <Link className='charge__button' to={routerUser.charge}>
+        <Link className='charge__button' to={routerUser.charge} onClick={handleChargeCart}>
           Thanh toán
         </Link>
       </div>

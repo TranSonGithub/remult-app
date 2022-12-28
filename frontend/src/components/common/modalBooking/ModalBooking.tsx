@@ -72,6 +72,8 @@ const ModalBooking = () => {
             option,
             number,
             total,
+            type: item.type,
+            price: item.price,
           },
         })
       );
