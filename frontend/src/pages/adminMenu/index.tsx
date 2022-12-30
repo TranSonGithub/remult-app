@@ -25,7 +25,7 @@ const AdminMenu = () => {
 
   const handleSetSubTitle = () => {
     console.log(pathname);
-    setSubMenu(pathname === '/admin/menu/main' || pathname === '/admin/menu' ? menu.menuDrink : menu.menuMain);
+    setSubMenu(pathname === '/admin/menu/drink' ? menu.menuMain : menu.menuDrink);
   };
 
   const handleShowModalAddMenu = (e: any) => {
@@ -33,7 +33,7 @@ const AdminMenu = () => {
   };
 
   useEffect(() => {
-    setSubMenu(pathname === '/admin/menu/main' || pathname === '/admin/menu' ? menu.menuMain : menu.menuDrink);
+    setSubMenu(pathname === '/admin/menu/drink' ? menu.menuDrink : menu.menuMain);
   }, [menu]);
   useEffect(() => {
     dispatch(loadingActions.changeLoading({ show: true }));

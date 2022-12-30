@@ -10,8 +10,9 @@ export enum TypeMenu {
 }
 
 export enum StatusOrder {
-  PEDDING = 'PEDDING',
+  PENDING = 'PENDING',
   CANCEL = 'CANCEL',
+  TRANSFERRING = 'TRANSFERRING',
   READY = 'READY',
   SUCCESS = 'SUCCESS',
 }

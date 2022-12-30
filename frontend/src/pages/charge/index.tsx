@@ -10,13 +10,13 @@ import { loadingActions } from '../../features/loading/loading';
 const ChargePage = () => {
   const dispatch = useDispatch();
   const cartList = useSelector(selectCartItems);
-  console.log('cartList', cartList);
 
   const [guestInfo, setGuestInfo] = useState({});
 
   const total = cartList.reduce((total, cart: any) => {
     return total + cart.total * cart.number;
   }, 0);
+  const totalUSD = (total * 0.042).toFixed(2);
 
   const handleChangeInfo = (e: any) => {
     console.log(e.target.name);
@@ -89,7 +89,7 @@ const ChargePage = () => {
                   purchase_units: [
                     {
                       amount: {
-                        value: '1',
+                        value: totalUSD,
                       },
                     },
                   ],
@@ -98,7 +98,25 @@ const ChargePage = () => {
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
                 const name = details?.payer.name?.given_name;
-                alert('Transaction completed by ' + name);
+                console.log('name', name);
+
+                const newItems = cartList.map((e: any) => {
+                  return {
+                    item: e.item,
+                    number: e.number,
+                    option: e.option,
+                    sizeName: e.size.name,
+                    total: e.total,
+                  };
+                });
+                dispatch(loadingActions.changeLoading({ show: true }));
+                dispatch(
+                  cartActions.chargeCart({
+                    total: `${total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}.000`,
+                    guestInfo: guestInfo,
+                    items: newItems,
+                  })
+                );
               }}
             />
           </PayPalScriptProvider>

@@ -5,7 +5,7 @@ import { typeModal } from '../../utils/constants';
 
 const initialState: IModal = {
   modalBooking: { show: false, item: {} },
-  modalAddMenu: { show: false },
+  modalAddMenu: { show: false, itemUpdate: {} },
   type: null,
 };
 

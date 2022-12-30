@@ -40,6 +40,46 @@ function* handleCreateMenu(action: any): any {
   }
 }
 
+function* handleUpdateMenu(action: any): any {
+  try {
+    console.log(`[Saga][handleUpdateMenu]`);
+
+    let responsefile;
+    const { _id, body } = action.payload;
+    if (body.img) {
+      const formData = new FormData();
+      formData.append('file', body.img);
+      console.log(`[Saga][handleUpdateMenu] formData-> ${JSON.stringify(formData.getAll('file'), null, 2)}`);
+
+      // Upload image
+      responsefile = yield call(fileApi.upload, formData);
+      console.log(`[Saga][handleUpdateMenu] responsefile-> ${JSON.stringify(responsefile.data.link, null, 2)}`);
+    }
+
+    // Create menu
+    const updateMenu = responsefile
+      ? {
+          _id,
+          body: {
+            ...body,
+            img: responsefile.data.link,
+          },
+        }
+      : { _id, body };
+    const response = yield call(menuApi.update, updateMenu);
+    const data = response.data;
+    console.log(`[Saga][handleUpdateMenu] dataResponse-> ${JSON.stringify(data.message, null, 2)}`);
+
+    history.push(routerAdmin.menu);
+    yield put(menuActions.getMenus({}));
+    yield put(modalActions.showModal({ modalAddMenu: { show: false }, type: typeModal.modalAddMenu } as any));
+    yield put(loadingActions.changeLoading({ show: false }));
+  } catch (error: any) {
+    console.log(`[Saga][handleUpdateMenu] dataResponse-> ${JSON.stringify(error.response.data.message, null, 2)}`);
+    yield put(menuActions.createMenuFail(error.response.data.message));
+  }
+}
+
 function* handleGetMenus(action: any): any {
   try {
     console.log(`[Saga][handleGetMenus]`);
@@ -59,4 +99,5 @@ function* handleGetMenus(action: any): any {
 export default function* menuSaga() {
   yield takeLatest(menuActions.createMenu.type, handleCreateMenu);
   yield takeLatest(menuActions.getMenus.type, handleGetMenus);
+  yield takeLatest(menuActions.updateMenu.type, handleUpdateMenu);
 }

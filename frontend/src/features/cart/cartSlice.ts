@@ -41,16 +41,20 @@ const cartSlice = createSlice({
     },
 
     getOrders(state, actions) {
-      console.log(`[cartSlice][chargeCart] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+      console.log(`[cartSlice][getOrders] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
     },
     getOrdersSuccess(state, actions) {
-      console.log(`[cartSlice][chargeCart] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
+      console.log(`[cartSlice][getOrdersSuccess] payload -> ${JSON.stringify(actions.payload, null, 2)}`);
       state.orders = actions.payload;
     },
     getOrdersFail(state, action) {
-      console.log(`[slice][getMenusFail] payload -> ${JSON.stringify(action.payload)}`);
+      console.log(`[slice][getOrdersFail] payload -> ${JSON.stringify(action.payload)}`);
       state.success = false;
       state.message = action.payload;
+    },
+
+    updateOrder(state, actions) {
+      console.log(`[slice][updateOrder] payload -> ${JSON.stringify(actions.payload)}`);
     },
 
     addPhoneNumber(state, actions) {

@@ -7,6 +7,7 @@ export interface IModalBooking {
 
 export interface IModalAddMenu {
   show: boolean;
+  itemUpdate: any;
 }
 
 export interface IModal {
@@ -15,10 +16,12 @@ export interface IModal {
   type: TypeModal;
 }
 
+export type CallbackFn = () => void;
 export interface IPopup {
   show: boolean;
   content: string;
   numberButton: number;
   phoneNumber?: string;
   type: string;
+  action?: CallbackFn;
 }

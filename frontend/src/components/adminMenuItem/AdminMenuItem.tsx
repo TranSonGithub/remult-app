@@ -8,7 +8,7 @@ import { typeMenu, typeModal } from '../../utils/constants';
 import { TypeModal } from '../../utils/type';
 
 const AdminMenuItem = (props: any) => {
-  const { name, img, description, sizes, type } = props.item;
+  const { name, img, description, sizes, type, _id } = props.item;
   const newSizes = [...sizes].sort((a: any, b: any) => Number(a.price) - Number(b.price));
 
   const dispatch = useDispatch();
@@ -18,7 +18,12 @@ const AdminMenuItem = (props: any) => {
     setShowModalAction(!showModalAction);
   };
   const handleShowModalAddMenu = (e: any) => {
-    dispatch(modalActions.showModal({ modalAddMenu: { show: true }, type: typeModal.modalAddMenu } as any));
+    dispatch(
+      modalActions.showModal({
+        modalAddMenu: { show: true, itemUpdate: { _id, name, img, description, sizes, type } },
+        type: typeModal.modalAddMenu,
+      } as any)
+    );
   };
 
   return (

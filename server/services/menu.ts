@@ -9,6 +9,9 @@ export const updateItemById = async (id: any, update: any) => {
   await Item.findByIdAndUpdate(id, update).exec();
   return await Item.findById(id).exec();
 };
+export const deleteItemById = async (id: any) => {
+  return await Item.findByIdAndDelete(id).exec();
+};
 
 export const getItemById = async (id: any) => {
   return await Item.findById(id).exec();

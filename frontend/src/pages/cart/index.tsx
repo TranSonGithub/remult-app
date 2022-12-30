@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CartItem from '../../components/cartItem/CartItem';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { routerUser } from '../../utils/route';
 import { mockCarts } from '../../mock/cart';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { cartActions, selectCartItems } from '../../features/cart/cartSlice';
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartList = useSelector(selectCartItems);
+  const navigate = useNavigate();
   console.log('[CartPage] cartList', cartList);
 
   const stateTotal = cartList.reduce((total, cart: any) => {
@@ -38,6 +39,7 @@ const CartPage = () => {
 
   const handleChargeCart = (e: any) => {
     if (total !== 0) {
+      navigate(routerUser.charge);
       dispatch(cartActions.changeCart({ items: newCart }));
     }
   };
@@ -59,9 +61,9 @@ const CartPage = () => {
           <b>Tổng</b>
           <p>{total ? `${total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}.000` : '0'} VND</p>
         </div>
-        <Link className='charge__button' to={routerUser.charge} onClick={handleChargeCart}>
+        <div className='charge__button cursor-pointer' onClick={handleChargeCart}>
           Thanh toán
-        </Link>
+        </div>
       </div>
     </div>
   );

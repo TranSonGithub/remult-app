@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   popupActions,
+  selectActionPopup,
   selectContentPopup,
   selectNumberButtonPopup,
   selectTypePopup,
@@ -13,6 +14,7 @@ import { cartActions } from '../../../features/cart/cartSlice';
 const Popup = () => {
   const dispatch = useDispatch();
   const numberButton = useSelector(selectNumberButtonPopup);
+  const action = useSelector(selectActionPopup);
   const type = useSelector(selectTypePopup);
 
   const content = useSelector(selectContentPopup);
@@ -30,6 +32,18 @@ const Popup = () => {
     dispatch(cartActions.resetCart());
     navigate(routerUser.tracking);
   };
+  console.log(`[Popup] type -> ${type}`);
+
+  const handleClickCancel = (e: any) => {
+    dispatch(
+      popupActions.hidePopup({
+        show: false,
+        content: '',
+        numberButton: 0,
+        type: 'POPUP',
+      })
+    );
+  };
 
   return (
     <>
@@ -37,8 +51,15 @@ const Popup = () => {
         <div className='popup__box'>
           <div className='popup__text'>{content}</div>
           <div className='popup__button'>
-            {numberButton === 2 && <div className='popup__button--item popup__cancel'>Huỷ</div>}
-            <div className='popup__button--item popup__success' onClick={handleClickPayment}>
+            {numberButton === 2 && (
+              <div className='popup__button--item popup__cancel' onClick={handleClickCancel}>
+                Huỷ
+              </div>
+            )}
+            <div
+              className='popup__button--item popup__success'
+              onClick={type == 'PAYMENT' ? handleClickPayment : action}
+            >
               Xác nhận
             </div>
           </div>

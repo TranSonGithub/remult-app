@@ -73,6 +73,7 @@ export const getListOrder = async (filter: any) => {
             option: '$orderItems.option',
             number: '$orderItems.number',
             sizeName: '$orderItems.sizeName',
+            total: '$orderItems.total',
           },
         },
       },
@@ -87,6 +88,11 @@ export const getListOrder = async (filter: any) => {
         notes: '$_id.notes',
         createdAt: '$_id.createdAt',
         items: '$items',
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1,
       },
     },
   ]);

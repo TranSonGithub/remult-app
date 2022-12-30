@@ -36,17 +36,34 @@ orderRoute.post('/', async (req: Request, res: Response) => {
 
 orderRoute.get('/?', async (req: Request, res: Response) => {
   try {
-    const { phoneNumber } = req.query;
-    console.log(`[getMenu] body -> ${JSON.stringify(req.body)}`);
+    const { phoneNumber, type } = req.query;
+    console.log(`[getOrder] body -> ${JSON.stringify(req.body)}`);
 
-    const orders = await orderService.getListOrder({ 'guestInfo.phoneNumber': phoneNumber });
+    const orders = await orderService.getListOrder(type === 'all' ? {} : { 'guestInfo.phoneNumber': phoneNumber });
 
     return res.status(200).json({
       success: true,
-      message: 'Get menu success',
+      message: 'Get order success',
       data: {
         orders,
       },
+    });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, message: `${err.message}` });
+  }
+});
+
+orderRoute.put('/:id', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    console.log(`[updateOrder] params -> ${JSON.stringify(req.params)} body -> ${JSON.stringify(req.body)}`);
+
+    await orderService.updateOrderById(id, body);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Update order success',
     });
   } catch (err: any) {
     return res.status(500).json({ success: false, message: `${err.message}` });

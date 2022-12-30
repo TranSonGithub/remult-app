@@ -48,7 +48,31 @@ function* handleGetOrders(action: any): any {
   }
 }
 
+function* handleUpdateOrder(action: any): any {
+  try {
+    const response = yield call(orderApi.update, action.payload);
+    const data = response.data;
+    console.log(`[Saga][handleUpdateOrder] dataResponse-> ${JSON.stringify(data.data, null, 2)}`);
+
+    yield put(loadingActions.changeLoading({ show: false }));
+    yield put(
+      popupActions.hidePopup({
+        show: false,
+        content: '',
+        numberButton: 0,
+        type: 'PAYMENT',
+      })
+    );
+
+    // yield put(cartActions.getOrdersSuccess(data.data.orders));
+  } catch (error: any) {
+    console.log(`[Saga][handleUpdateOrder] dataResponse-> ${JSON.stringify(error.response.data.message, null, 2)}`);
+    yield put(cartActions.getOrdersFail(error.response.data.message));
+  }
+}
+
 export default function* cartSaga() {
   yield takeLatest(cartActions.chargeCart.type, handleCreateOrder);
   yield takeLatest(cartActions.getOrders.type, handleGetOrders);
+  yield takeLatest(cartActions.updateOrder.type, handleUpdateOrder);
 }

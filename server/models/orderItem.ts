@@ -14,7 +14,7 @@ const OrderItemSchema = new mongoose.Schema(
     number: Number,
     sizeName: String,
     total: String,
-    options: {
+    option: {
       name: String,
       price: Number,
     },

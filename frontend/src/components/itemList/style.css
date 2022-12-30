@@ -19,6 +19,7 @@
 .detail__container {
   border: 1px solid black;
   border-radius: 5px;
+  margin-bottom: 2.5rem;
 }
 .detail__header {
   @apply pl-8 pr-16 py-4 relative flex justify-between;

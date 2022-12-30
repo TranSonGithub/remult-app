@@ -42,4 +42,37 @@ menuRoute.get('/', async (req: Request, res: Response) => {
   }
 });
 
+menuRoute.put('/:id', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    console.log(`[updateMenu] params -> ${JSON.stringify(req.params)} body -> ${JSON.stringify(req.body)}`);
+
+    await menuService.updateItemById(id, body);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Update menu success',
+    });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, message: `${err.message}` });
+  }
+});
+
+menuRoute.delete('/:id', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log(`[updateMenu] params -> ${JSON.stringify(req.params)} body -> ${JSON.stringify(req.body)}`);
+
+    await menuService.deleteItemById(id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Update menu success',
+    });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, message: `${err.message}` });
+  }
+});
+
 export default menuRoute;

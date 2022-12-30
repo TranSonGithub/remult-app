@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import iconAddPhoto from '../../../assets/icon/addPhoto.svg';
 import './style.css';
-import { useDispatch } from 'react-redux';
-import { modalActions } from '../../../features/modal/modalSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { modalActions, selectModalAddMenu } from '../../../features/modal/modalSlice';
 import { typeMenu, typeModal } from '../../../utils/constants';
 import SizeItem from './SizeItem';
 import { loadingActions } from '../../../features/loading/loading';
@@ -13,11 +13,17 @@ import axiosClient from '../../../api';
 
 const ModalAdminMenu = () => {
   const dispatch = useDispatch();
-  const [imgItem, setImgItem] = useState();
-  const [previewImgItem, setPreviewImgItem] = useState();
+  const modalAddMenu = useSelector(selectModalAddMenu);
+  const { itemUpdate } = modalAddMenu;
+  const isUpdate = itemUpdate ? Object.keys(itemUpdate)?.length !== 0 : false;
 
-  const [sizes, setSizes] = useState([{ name: '', size: 14, price: '' }]);
-  const [type, setType] = useState(typeMenu.main);
+  const [isChange, setIsChange] = useState(false);
+  const [imgItem, setImgItem] = useState(itemUpdate?.img);
+  const [previewImgItem, setPreviewImgItem] = useState(itemUpdate?.img);
+
+  const [sizes, setSizes] = useState(itemUpdate?.sizes ? itemUpdate.sizes : [{ name: '', size: 14, price: '' }]);
+  const [type, setType] = useState(itemUpdate?.type || typeMenu.main);
+  console.log('itemUpdate', itemUpdate);
 
   const handleHideModalAddMenu = (e: any) => {
     dispatch(modalActions.showModal({ modalAddMenu: { show: false }, type: typeModal.modalAddMenu } as any));
@@ -28,6 +34,7 @@ const ModalAdminMenu = () => {
     console.log(`[ModalAdminMenu][handleUploadImg] e -> ${JSON.stringify(e.target.files.length, null, 2)}`);
     setPreviewImgItem(URL.createObjectURL(e.target.files[0]) as any);
     setImgItem(e.target.files[0]);
+    setIsChange(true);
   };
   const handleAddSize = (e: any) => {
     console.log(`[ModalAdminMenu][handleUploadImg]`);
@@ -39,6 +46,7 @@ const ModalAdminMenu = () => {
     const key = e.target.name.split('_')[1];
     const size = sizes[index] as any;
     size[key] = e.target.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    setSizes(sizes);
   };
 
   const handleSubmit = (e: any) => {
@@ -54,15 +62,33 @@ const ModalAdminMenu = () => {
     );
 
     dispatch(loadingActions.changeLoading({ show: true }));
-    dispatch(
-      menuActions.createMenu({
-        img: imgItem,
-        sizes,
-        name: namePizza.value,
-        description: descriptionPizza.value,
-        type: type.value,
-      })
-    );
+    const body = isChange
+      ? {
+          img: imgItem,
+        }
+      : {};
+    isUpdate
+      ? dispatch(
+          menuActions.updateMenu({
+            _id: itemUpdate?._id,
+            body: {
+              ...body,
+              sizes,
+              name: namePizza.value,
+              description: descriptionPizza.value,
+              type: type.value,
+            },
+          })
+        )
+      : dispatch(
+          menuActions.createMenu({
+            img: imgItem,
+            sizes,
+            name: namePizza.value,
+            description: descriptionPizza.value,
+            type: type.value,
+          })
+        );
   };
 
   const handleChangeType = (e: any) => {
@@ -75,8 +101,8 @@ const ModalAdminMenu = () => {
         <div className='modalAdminMenu__sizeBox'>
           <div className='text__subTitle sizeBox__title'>{type === typeMenu.main ? 'Size' : 'Giá tiền'}</div>
           <div className='sizeBox__listSize'>
-            {sizes.map((size, idx) => (
-              <SizeItem key={idx} index={idx} type={type} handleChangeSize={handleChangeSize} />
+            {sizes.map((size: any, idx: any) => (
+              <SizeItem key={idx} index={idx} type={type} handleChangeSize={handleChangeSize} size={size} />
             ))}
             {type === typeMenu.main && (
               <div className='sizeBox__btnAdd' onClick={handleAddSize}>
@@ -89,7 +115,7 @@ const ModalAdminMenu = () => {
           <div className='info__header'>
             <div className='info__itemName'>
               <div className='text__subTitle info__title'>Tên</div>
-              <input type='text' className='sizeBox__itemInput info__input' name='namePizza' />
+              <input type='text' className='sizeBox__itemInput info__input' name='namePizza' value={itemUpdate?.name} />
             </div>
             <label htmlFor='upload' className='info__avatar'>
               <input id='upload' type='file' onChange={handleUploadImg} name='imgPizza' />
@@ -98,13 +124,18 @@ const ModalAdminMenu = () => {
           </div>
           <div className='info__description'>
             <div className='text__subTitle info__description--label'>Thành phần</div>
-            <textarea className='sizeBox__itemInput info__description--text' name='descriptionPizza'></textarea>
+            <textarea
+              className='sizeBox__itemInput info__description--text'
+              name='descriptionPizza'
+              value={itemUpdate?.description}
+            ></textarea>
           </div>
           <select
             id='underline_select'
             className='block py-2.5 px-0 w-full text-xl text-black bg-transparent border-0 border-b-2 border-black appearance-none dark:text-black-400 dark:border-black-700 focus:outline-none focus:ring-0 focus:border-black-200 peer'
             name='type'
             onChange={handleChangeType}
+            value={itemUpdate?.type}
           >
             <option value='MAIN'>Món chính</option>
             <option value='DRINK'>Nước uống</option>

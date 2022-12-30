@@ -19,6 +19,7 @@ const TrackingPage = () => {
   };
 
   const handleSearchOrder = (e: any) => {
+    dispatch(loadingActions.changeLoading({ show: true }));
     dispatch(cartActions.getOrders({ phoneNumber }));
   };
 
@@ -46,8 +47,8 @@ const TrackingPage = () => {
         </div>
       </div>
       <div className='trackingPage__listOrder'>
-        {orders.map((e: any) => {
-          return <OrderItem orderItem={e} />;
+        {orders.map((e: any, idx: any) => {
+          return <OrderItem orderItem={e} key={idx} />;
         })}
       </div>
     </div>

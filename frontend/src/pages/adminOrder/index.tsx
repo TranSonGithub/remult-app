@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import ItemList from '../../components/itemList/ItemList';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions, selectOrders, selectPhoneNumber } from '../../features/cart/cartSlice';
+import { loadingActions } from '../../features/loading/loading';
+import { popupActions } from '../../features/popup/popupSlice';
 
 const AdminOrder = () => {
+  const dispatch = useDispatch();
+  const orders = useSelector(selectOrders);
+  const phoneNumberPayment = useSelector(selectPhoneNumber);
+
+  const [phoneNumber, setPhoneNumber] = useState();
+
+  const handlePhoneNumber = (e: any) => {
+    setPhoneNumber(e.target.value);
+    if (e.target.value === '') {
+      dispatch(popupActions.resetPhoneNumber());
+      dispatch(loadingActions.changeLoading({ show: true }));
+      dispatch(cartActions.getOrders({ type: 'all' }));
+    }
+  };
+
+  const handleSearchOrder = (e: any) => {
+    dispatch(loadingActions.changeLoading({ show: true }));
+    dispatch(cartActions.getOrders({ phoneNumber }));
+  };
+
+  useEffect(() => {
+    console.log(`[TrackingPage] phoneNumber -> ${phoneNumberPayment}`);
+    dispatch(loadingActions.changeLoading({ show: true }));
+    dispatch(cartActions.getOrders({ type: 'all' }));
+    dispatch(popupActions.resetPhoneNumber());
+  }, []);
+
   return (
     <div className='adminOrder__container'>
       <div className='adminOrder__search'>
@@ -13,7 +44,10 @@ const AdminOrder = () => {
             Nhập số điện thoại
           </label>
           <div className='relative w-full'>
-            <div className='absolute inset-y-0 left-0 flex items-center pl-3 cursor-pointer'>
+            <div
+              className='absolute inset-y-0 left-0 flex items-center pl-3 cursor-pointer'
+              onClick={handleSearchOrder}
+            >
               <svg
                 aria-hidden='true'
                 className='w-5 h-5 text-gray-500 dark:text-gray-400'
@@ -33,6 +67,7 @@ const AdminOrder = () => {
               id='simple-search'
               className='bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 '
               placeholder='Nhập số điện thoại'
+              onChange={handlePhoneNumber}
               required
             />
           </div>
@@ -46,7 +81,9 @@ const AdminOrder = () => {
           <div className='header__item header__total'>Tổng tiền</div>
           <div className='header__item header__status'>Trạng thái</div>
         </div>
-        <ItemList />
+        {orders.map((e, idx) => {
+          return <ItemList item={e} key={idx} />;
+        })}
       </div>
     </div>
   );

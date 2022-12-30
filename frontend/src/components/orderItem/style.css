@@ -35,6 +35,10 @@
   border-radius: 0 0 10px 10px;
 }
 
+.border {
+  border-radius: 10px;
+}
+
 .orderItem__info {
   @apply grid grid-cols-2 py-6 px-12;
   font-size: 25px;
@@ -56,11 +60,29 @@
   width: 100%;
   height: 100%;
 }
-.orderItem__button button {
+.orderItem__button--red {
   @apply m-auto text-center;
-  color: red;
+  color: #ff0303;
   width: 350px;
   height: 65px;
-  border: 1px solid red;
+  border: 1px solid #ff0303;
   border-radius: 10px;
+}
+
+.orderItem__text--red {
+  @apply m-auto text-center;
+  color: #ff0303;
+  width: 350px;
+}
+
+.orderItem__text---blue {
+  @apply m-auto text-center;
+  color: #2b60c8;
+  width: 350px;
+}
+
+.orderItem__text--green {
+  @apply m-auto text-center;
+  color: #27ae60;
+  width: 350px;
 }

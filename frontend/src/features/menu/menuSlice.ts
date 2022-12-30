@@ -24,6 +24,15 @@ const menuSlice = createSlice({
       state.message = action.payload;
     },
 
+    updateMenu(state, action) {
+      console.log(`[slice][updateMenu] payload -> ${JSON.stringify(action.payload)}`);
+    },
+    updateMenuFail(state, action) {
+      console.log(`[slice][updateMenuFail] payload -> ${JSON.stringify(action.payload)}`);
+      state.success = false;
+      state.message = action.payload;
+    },
+
     getMenus(state, action) {
       console.log(`[slice][getMenus] payload -> ${JSON.stringify(action.payload)}`);
     },

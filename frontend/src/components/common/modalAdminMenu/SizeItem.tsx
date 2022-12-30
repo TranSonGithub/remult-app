@@ -2,7 +2,7 @@ import React from 'react';
 import { typeMenu } from '../../../utils/constants';
 
 const SizeItem = (props: any) => {
-  const { index, type, handleChangeSize } = props;
+  const { size, index, type, handleChangeSize } = props;
   return (
     <div className='sizeBox__item'>
       {type === typeMenu.main && (
@@ -10,6 +10,7 @@ const SizeItem = (props: any) => {
           className='sizeBox__itemInput sizeBox__itemName'
           placeholder='Size S'
           name={`${index}_name`}
+          value={size.name}
           onChange={handleChangeSize}
         />
       )}
@@ -50,6 +51,7 @@ const SizeItem = (props: any) => {
           className='sizeBox__itemPrice--input'
           placeholder='Giá tiền'
           name={`${index}_price`}
+          value={size.price}
           onChange={handleChangeSize}
         />
         <p className='sizeBox__itemPrice--deno'>VND</p>

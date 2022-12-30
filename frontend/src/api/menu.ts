@@ -14,6 +14,13 @@ const menuApi = {
     const url = '/menus';
     return await axiosClient.get(url, params);
   },
+
+  async update(params: any) {
+    console.log(`[menuApi][update] params -> ${JSON.stringify(params, null, 2)}`);
+
+    const url = `/menus/${params._id}`;
+    return await axiosClient.put(url, params.body);
+  },
 };
 
 export default menuApi;

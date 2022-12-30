@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IModal, IModalBooking, IPopup } from '../../interface/modal';
+import { IModal, IModalBooking, IPopup, CallbackFn } from '../../interface/modal';
 import { RootState } from '../../app/store';
 
 const initialState: IPopup = {
@@ -7,6 +7,7 @@ const initialState: IPopup = {
   content: '',
   numberButton: 2,
   type: '',
+  action: () => {},
 };
 
 const popupSlice = createSlice({
@@ -18,6 +19,8 @@ const popupSlice = createSlice({
       state.show = actions.payload.show;
       state.content = actions.payload.content;
       state.numberButton = actions.payload.numberButton;
+      state.type = actions.payload.type;
+      state.action = actions.payload.action;
     },
     hidePopup(state, actions: PayloadAction<IPopup>) {
       state.show = actions.payload.show;
@@ -39,6 +42,7 @@ export const selectShowPopup = (state: RootState) => state.popup.show;
 export const selectContentPopup = (state: RootState) => state.popup.content;
 export const selectNumberButtonPopup = (state: RootState) => state.popup.numberButton;
 export const selectTypePopup = (state: RootState) => state.popup.type;
+export const selectActionPopup = (state: RootState) => state.popup.action;
 
 const popupReducer = popupSlice.reducer;
 export default popupReducer;

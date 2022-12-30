@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 
 const AdminInput = (props: any) => {
-  const { title, content, readonly } = props;
+  const { title, content, readonly, classStatus } = props;
 
   return (
     <div className='adminInput__container'>
