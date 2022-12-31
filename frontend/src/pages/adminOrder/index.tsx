@@ -28,7 +28,7 @@ const AdminOrder = () => {
   };
 
   useEffect(() => {
-    console.log(`[TrackingPage] phoneNumber -> ${phoneNumberPayment}`);
+    console.log(`[AdminOrder] phoneNumber -> ${phoneNumberPayment}`);
     dispatch(loadingActions.changeLoading({ show: true }));
     dispatch(cartActions.getOrders({ type: 'all' }));
     dispatch(popupActions.resetPhoneNumber());
@@ -81,9 +81,11 @@ const AdminOrder = () => {
           <div className='header__item header__total'>Tổng tiền</div>
           <div className='header__item header__status'>Trạng thái</div>
         </div>
-        {orders.map((e, idx) => {
-          return <ItemList item={e} key={idx} />;
-        })}
+        <div className='adminOrder__itemList'>
+          {orders.map((e, idx) => {
+            return <ItemList item={e} key={idx} />;
+          })}
+        </div>
       </div>
     </div>
   );

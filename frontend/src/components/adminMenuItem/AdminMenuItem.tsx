@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pizza from '../../assets/image/pizza.png';
 import iconThreeDotsVertical from '../../assets/icon/three-dots-vertical.svg';
 import './style.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../features/modal/modalSlice';
 import { typeMenu, typeModal } from '../../utils/constants';
 import { TypeModal } from '../../utils/type';
+import { menuActions, selectMenuList } from '../../features/menu/menuSlice';
+import { loadingActions } from '../../features/loading/loading';
 
 const AdminMenuItem = (props: any) => {
   const { name, img, description, sizes, type, _id } = props.item;
   const newSizes = [...sizes].sort((a: any, b: any) => Number(a.price) - Number(b.price));
+  const menu = useSelector(selectMenuList);
 
   const dispatch = useDispatch();
   const [showModalAction, setShowModalAction] = useState(false);
@@ -25,6 +28,17 @@ const AdminMenuItem = (props: any) => {
       } as any)
     );
   };
+  const handleDeleteMenu = (e: any) => {
+    dispatch(
+      menuActions.deleteMenu({
+        _id,
+      })
+    );
+    dispatch(loadingActions.changeLoading({ show: true }));
+  };
+  useEffect(() => {
+    setShowModalAction(false);
+  }, [menu]);
 
   return (
     <div className='adminMenuItem__container'>
@@ -53,7 +67,9 @@ const AdminMenuItem = (props: any) => {
           <div className='modal__action--item modal__action--edit' onClick={handleShowModalAddMenu}>
             Chỉnh sửa
           </div>
-          <div className='modal__action--item modal__action--delete'>Xoá</div>
+          <div className='modal__action--item modal__action--delete' onClick={handleDeleteMenu}>
+            Xoá
+          </div>
         </div>
       )}
     </div>

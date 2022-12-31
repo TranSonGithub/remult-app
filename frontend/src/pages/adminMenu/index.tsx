@@ -39,8 +39,6 @@ const AdminMenu = () => {
     dispatch(loadingActions.changeLoading({ show: true }));
     dispatch(menuActions.getMenus({}));
   }, []);
-  console.log(`[AdminMenu] menus -> ${JSON.stringify(menu, null, 2)}`);
-  console.log(`[AdminMenu] pathname -> ${JSON.stringify(pathname, null, 2)}`);
 
   return (
     <div className='adminMenu__container'>

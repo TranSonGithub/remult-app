@@ -10,7 +10,7 @@ const SizeItem = (props: any) => {
           className='sizeBox__itemInput sizeBox__itemName'
           placeholder='Size S'
           name={`${index}_name`}
-          value={size.name}
+          value={size?.name}
           onChange={handleChangeSize}
         />
       )}
@@ -51,7 +51,7 @@ const SizeItem = (props: any) => {
           className='sizeBox__itemPrice--input'
           placeholder='Giá tiền'
           name={`${index}_price`}
-          value={size.price}
+          value={size?.price}
           onChange={handleChangeSize}
         />
         <p className='sizeBox__itemPrice--deno'>VND</p>

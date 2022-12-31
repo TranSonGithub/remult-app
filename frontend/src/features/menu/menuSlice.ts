@@ -32,6 +32,14 @@ const menuSlice = createSlice({
       state.success = false;
       state.message = action.payload;
     },
+    deleteMenu(state, action) {
+      console.log(`[slice][deleteMenu] payload -> ${JSON.stringify(action.payload)}`);
+    },
+    deleteMenuFail(state, action) {
+      console.log(`[slice][deleteMenuFail] payload -> ${JSON.stringify(action.payload)}`);
+      state.success = false;
+      state.message = action.payload;
+    },
 
     getMenus(state, action) {
       console.log(`[slice][getMenus] payload -> ${JSON.stringify(action.payload)}`);

@@ -5,24 +5,65 @@ import UpArrow from '../../assets/icon/upArrow.svg';
 import AdminInput from '../common/adminInput/AdminInput';
 import AdminItemOrder from '../adminItemOrder/AdminItemOrder';
 import { StatusOrder } from '../../utils/constants';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../features/cart/cartSlice';
+import { loadingActions } from '../../features/loading/loading';
 
 const ItemList = (props: any) => {
   const { item } = props;
+  const dispatch = useDispatch();
+
+  const [isEdit, setIsEdit] = useState(false);
 
   const [showDetail, setShowDetail] = useState(false);
   const [items, setItems] = useState(item?.items);
+  const [status, setStatus] = useState(item.status);
+
+  const indexStatus = Object.keys(StatusOrder).findIndex((e: any) => e === status);
+  const [content, setContent] = useState(Object.values(StatusOrder)[indexStatus]?.option);
 
   const handleToggleDetail = (e: any) => {
     setShowDetail(!showDetail);
     setItems(item?.items);
   };
-  const indexStatus = Object.keys(StatusOrder).findIndex((e: any) => e === item.status);
+  const handleToggleEdit = (e: any) => {
+    setIsEdit(!isEdit);
+    setStatus(item.status);
+    setContent(Object.values(StatusOrder)[indexStatus]?.text);
+  };
+  const handleChangeStatus = (event: any) => {
+    setStatus(event.target.value);
+    const newIdx = Object.keys(StatusOrder).findIndex((e: any) => e === event.target.value);
+    setContent(Object.values(StatusOrder)[newIdx]?.option);
+  };
+  const handleSave = (e: any) => {
+    setIsEdit(!isEdit);
+    setShowDetail(false);
+    dispatch(loadingActions.changeLoading({ show: true }));
+    dispatch(cartActions.updateOrder({ _id: item._id, body: { status } }));
+  };
+
+  console.log(`[ItemList][handleChangeStatus] status -> ${status} `);
 
   return showDetail ? (
     <div className='detail__container'>
       <div className='detail__header'>
         <div className='detail__id'>#{item?.orderId}</div>
-        <div className='detail__action'>Chỉnh sửa</div>
+        {isEdit ? (
+          <div className='flex'>
+            <div className='detail__action--cancel mr-5' onClick={handleToggleEdit}>
+              Huỷ
+            </div>
+            <div className='detail__action' onClick={handleSave}>
+              Lưu
+            </div>
+          </div>
+        ) : (
+          <div className='detail__action' onClick={handleToggleEdit}>
+            Chỉnh sửa
+          </div>
+        )}
+
         <div className='detail__arrow' onClick={handleToggleDetail}>
           <img src={UpArrow} alt='' />
         </div>
@@ -31,8 +72,12 @@ const ItemList = (props: any) => {
         <AdminInput title='ID' content={`#${item.orderId}`} />
         <AdminInput
           title='Trạng thái'
-          content={Object.values(StatusOrder)[indexStatus]?.text || 'Đơn hàng mới'}
-          classStatus={Object.values(StatusOrder)[indexStatus]?.class}
+          startStatus={item.status}
+          status={status}
+          content={content}
+          classStatus={Object.values(StatusOrder)[indexStatus]?.color}
+          isEdit={isEdit}
+          handleChangeStatus={handleChangeStatus}
         />
         <AdminInput
           title='Tổng tiền'
@@ -58,7 +103,7 @@ const ItemList = (props: any) => {
       <div className='header__phoneNumber'>{`${item?.guestInfo?.phoneNumber}`}</div>
       <div className='header__total'>{`${item?.total?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}.000 VND`}</div>
       <div className={`header__status ${Object.values(StatusOrder)[indexStatus]?.color}`}>
-        {Object.values(StatusOrder)[indexStatus]?.text || 'Đơn hàng mới'}
+        {Object.values(StatusOrder)[indexStatus]?.option || 'Đơn hàng mới'}
       </div>
       <div className='arrow__item' onClick={handleToggleDetail}>
         <img src={DownArrow} alt='' />

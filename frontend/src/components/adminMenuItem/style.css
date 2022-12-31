@@ -2,6 +2,7 @@
   @apply relative p-10 mt-10;
   border: 1px solid var(--primary);
   border-radius: 15px;
+  height: 250px;
 }
 .adminMenuItem__content {
   @apply mb-5 flex;

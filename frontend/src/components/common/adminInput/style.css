@@ -11,3 +11,9 @@
   line-height: 40px;
   border-bottom: 1px solid #e5e7eb;
 }
+.adminOption__input {
+  @apply mt-2 py-3 outline-none w-full;
+  font-size: 16px;
+  line-height: 40px;
+  border-bottom: 1px solid #e5e7eb;
+}

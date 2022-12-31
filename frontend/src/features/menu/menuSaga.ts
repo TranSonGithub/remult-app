@@ -96,8 +96,26 @@ function* handleGetMenus(action: any): any {
   }
 }
 
+function* handleDeleteMenu(action: any): any {
+  try {
+    console.log(`[Saga][handleDeleteMenu]`);
+
+    yield call(menuApi.delete, action.payload);
+    console.log(`[Saga][handleDeleteMenu] deleteMenu`);
+
+    const response = yield call(menuApi.get, action.payload);
+    const data = response.data;
+    yield put(loadingActions.changeLoading({ show: false }));
+    yield put(menuActions.getMenusSuccess(data.data.menus));
+  } catch (error: any) {
+    console.log(`[Saga][handleDeleteMenu] dataResponse-> ${JSON.stringify(error.response.data.message, null, 2)}`);
+    yield put(menuActions.createMenuFail(error.response.data.message));
+  }
+}
+
 export default function* menuSaga() {
   yield takeLatest(menuActions.createMenu.type, handleCreateMenu);
   yield takeLatest(menuActions.getMenus.type, handleGetMenus);
   yield takeLatest(menuActions.updateMenu.type, handleUpdateMenu);
+  yield takeLatest(menuActions.deleteMenu.type, handleDeleteMenu);
 }

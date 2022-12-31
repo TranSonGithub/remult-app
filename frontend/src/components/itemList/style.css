@@ -39,6 +39,10 @@
   @apply cursor-pointer;
   color: var(--blue);
 }
+.detail__action--cancel {
+  @apply cursor-pointer;
+  color: var(--red);
+}
 
 /* Item when show */
 .detail__item {

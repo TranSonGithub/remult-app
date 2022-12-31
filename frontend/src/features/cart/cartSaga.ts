@@ -50,21 +50,14 @@ function* handleGetOrders(action: any): any {
 
 function* handleUpdateOrder(action: any): any {
   try {
-    const response = yield call(orderApi.update, action.payload);
+    yield call(orderApi.update, action.payload);
+    console.log(`[Saga][handleUpdateOrder] updateOrder`);
+
+    const response = yield call(orderApi.get, { type: 'all' });
     const data = response.data;
     console.log(`[Saga][handleUpdateOrder] dataResponse-> ${JSON.stringify(data.data, null, 2)}`);
-
+    yield put(cartActions.getOrdersSuccess(data.data.orders));
     yield put(loadingActions.changeLoading({ show: false }));
-    yield put(
-      popupActions.hidePopup({
-        show: false,
-        content: '',
-        numberButton: 0,
-        type: 'PAYMENT',
-      })
-    );
-
-    // yield put(cartActions.getOrdersSuccess(data.data.orders));
   } catch (error: any) {
     console.log(`[Saga][handleUpdateOrder] dataResponse-> ${JSON.stringify(error.response.data.message, null, 2)}`);
     yield put(cartActions.getOrdersFail(error.response.data.message));

@@ -29,4 +29,6 @@
 
 .adminMenu__listItem {
   @apply grid grid-cols-2 mt-8 gap-x-2;
+  @apply overflow-y-auto;
+  height: 75vh;
 }

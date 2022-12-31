@@ -21,7 +21,8 @@ const ModalAdminMenu = () => {
   const [imgItem, setImgItem] = useState(itemUpdate?.img);
   const [previewImgItem, setPreviewImgItem] = useState(itemUpdate?.img);
 
-  const [sizes, setSizes] = useState(itemUpdate?.sizes ? itemUpdate.sizes : [{ name: '', size: 14, price: '' }]);
+  const sizesMenu = itemUpdate?.sizes;
+  const [sizes, setSizes] = useState(sizesMenu || [{ name: '', size: 14, price: '' }]);
   const [type, setType] = useState(itemUpdate?.type || typeMenu.main);
   console.log('itemUpdate', itemUpdate);
 
@@ -40,18 +41,35 @@ const ModalAdminMenu = () => {
     console.log(`[ModalAdminMenu][handleUploadImg]`);
     setSizes([...sizes, { name: '', size: 14, price: '' }]);
   };
-  const handleChangeSize = (e: any) => {
-    console.log(`[ModalAdminMenu][handleChangeSize] e.value -> ${JSON.stringify(e.target.value, null, 2)}`);
-    const index = e.target.name.split('_')[0];
-    const key = e.target.name.split('_')[1];
-    const size = sizes[index] as any;
-    size[key] = e.target.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    setSizes(sizes);
+  const handleChangeSize = (event: any) => {
+    console.log(
+      `[ModalAdminMenu][handleChangeSize] e.value -> ${JSON.stringify(
+        event.target.value,
+        null,
+        2
+      )}, name -> ${JSON.stringify(event.target.name, null, 2)}`
+    );
+    const index = event.target.name.split('_')[0];
+    const key = event.target.name.split('_')[1];
+    const value = event.target.value;
+    const newSizes = sizes.map((e: any, idx: any) => {
+      if (Number(index) === idx) {
+        return {
+          name: key === 'name' ? value : e.name,
+          price: key === 'price' ? value : e.price,
+          size: key === 'size' ? value : e.size,
+        };
+      }
+      return e;
+    });
+
+    setSizes(newSizes);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const { namePizza, descriptionPizza, type } = e.target;
+    const sizeBody = sizes.map((e: any) => ({ ...e, price: e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') }));
     console.log(
       `[ModalAdminMenu][handleSubmit] namePizza -> ${JSON.stringify(namePizza.value)}, 
         descriptionPizza -> ${JSON.stringify(descriptionPizza.value)} sizes -> ${JSON.stringify(
@@ -73,7 +91,7 @@ const ModalAdminMenu = () => {
             _id: itemUpdate?._id,
             body: {
               ...body,
-              sizes,
+              sizes: sizeBody,
               name: namePizza.value,
               description: descriptionPizza.value,
               type: type.value,
@@ -83,7 +101,7 @@ const ModalAdminMenu = () => {
       : dispatch(
           menuActions.createMenu({
             img: imgItem,
-            sizes,
+            sizes: sizeBody,
             name: namePizza.value,
             description: descriptionPizza.value,
             type: type.value,
@@ -92,7 +110,8 @@ const ModalAdminMenu = () => {
   };
 
   const handleChangeType = (e: any) => {
-    setType(e.target.value === typeMenu.main ? typeMenu.main : typeMenu.drink);
+    setType(e.target.value);
+    setSizes([{ name: '', size: 14, price: '' }]);
   };
 
   return (
@@ -115,7 +134,12 @@ const ModalAdminMenu = () => {
           <div className='info__header'>
             <div className='info__itemName'>
               <div className='text__subTitle info__title'>Tên</div>
-              <input type='text' className='sizeBox__itemInput info__input' name='namePizza' value={itemUpdate?.name} />
+              <input
+                type='text'
+                className='sizeBox__itemInput info__input'
+                name='namePizza'
+                defaultValue={itemUpdate?.name}
+              />
             </div>
             <label htmlFor='upload' className='info__avatar'>
               <input id='upload' type='file' onChange={handleUploadImg} name='imgPizza' />
@@ -127,7 +151,7 @@ const ModalAdminMenu = () => {
             <textarea
               className='sizeBox__itemInput info__description--text'
               name='descriptionPizza'
-              value={itemUpdate?.description}
+              defaultValue={itemUpdate?.description}
             ></textarea>
           </div>
           <select
@@ -135,7 +159,7 @@ const ModalAdminMenu = () => {
             className='block py-2.5 px-0 w-full text-xl text-black bg-transparent border-0 border-b-2 border-black appearance-none dark:text-black-400 dark:border-black-700 focus:outline-none focus:ring-0 focus:border-black-200 peer'
             name='type'
             onChange={handleChangeType}
-            value={itemUpdate?.type}
+            defaultValue={itemUpdate?.type}
           >
             <option value='MAIN'>Món chính</option>
             <option value='DRINK'>Nước uống</option>

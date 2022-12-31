@@ -15,23 +15,33 @@ export const typeOption = {
 };
 
 export const StatusOrder = {
+  READY: {
+    text: 'Đơn hàng mới',
+    option: 'Đơn hàng mới',
+    class: '',
+    color: '',
+  },
   PENDING: {
     text: 'Nhà hàng đang chuẩn bị',
-    class: 'orderItem__button--green',
-    color: 'text-green',
+    option: 'Chuẩn bị',
+    class: 'orderItem__button--blue',
+    color: 'text-[#2b60c8]',
   },
   CANCEL: {
     text: 'Đơn hàng đã bị huỷ',
+    option: 'Đã huỷ',
     class: 'orderItem__text--red',
     color: 'text-[#ff0303]',
   },
   TRANSFERRING: {
     text: 'Đơn hàng đang được giao',
+    option: 'Giao hàng',
     class: 'orderItem__text--blue',
     color: 'text-[#2b60c8]',
   },
   SUCCESS: {
     text: 'Hoàn thành!',
+    option: 'Hoàn thành',
     class: 'orderItem__text--green',
     color: 'text-[#27ae60]',
   },
